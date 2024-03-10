@@ -1,0 +1,15 @@
+/**
+ * Configure and register global directives
+ */
+import type { App } from 'vue';
+import { setupPermissionDirective } from './permission';
+import { setupLoadingDirective } from './loading';
+import { setupEllipsisDirective } from './ellipsis';
+import { setupClickLoadingDirective } from './clickLoading';
+
+export function setupGlobDirectives(app: App) {
+  setupPermissionDirective(app);
+  setupLoadingDirective(app);
+  setupEllipsisDirective(app);
+  setupClickLoadingDirective(app);
+}

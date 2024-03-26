@@ -1,40 +1,42 @@
 <template>
-  <BasicTable @register="registerTable">
-    <template #form-custom> custom-slot </template>
-    <template #toolbar>
-      <a-button type="primary" @click="handleCreate">新增账号</a-button>
-    </template>
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'action'">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:analytics-line',
-              tooltip: '查看代理统计',
-              onClick: handleAgentAnalysis.bind(null, record),
-            },
-            {
-              icon: 'clarity:note-edit-line',
-              tooltip: '编辑代理资料',
-              onClick: handleEdit.bind(null, record),
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              tooltip: '删除此账号',
-              popConfirm: {
-                title: '是否确认删除',
-                placement: 'left',
-                confirm: handleDelete.bind(null, record),
-              },
-            },
-          ]"
-        />
+  <div>
+    <BasicTable @register="registerTable">
+      <template #form-custom> custom-slot </template>
+      <template #toolbar>
+        <a-button type="primary" @click="handleCreate">新增账号</a-button>
       </template>
-    </template>
-  </BasicTable>
-  <AgentModal @register="registerModal" :onSubmit="handleSubmit" />
-  <AgentAnalysis @register="registerAgentAnalysisModal" />
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:analytics-line',
+                tooltip: '查看代理统计',
+                onClick: handleAgentAnalysis.bind(null, record),
+              },
+              {
+                icon: 'clarity:note-edit-line',
+                tooltip: '编辑代理资料',
+                onClick: handleEdit.bind(null, record),
+              },
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                tooltip: '删除此账号',
+                popConfirm: {
+                  title: '是否确认删除',
+                  placement: 'left',
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+            ]"
+          />
+        </template>
+      </template>
+    </BasicTable>
+    <AgentModal @register="registerModal" :onSubmit="handleSubmit" />
+    <AgentAnalysis @register="registerAgentAnalysisModal" />
+  </div>
 </template>
 <script lang="ts" setup>
   import { BasicTable, TableAction, useTable } from '@/components/Table';

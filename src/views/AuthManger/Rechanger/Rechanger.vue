@@ -1,23 +1,25 @@
 <template>
-  <BasicTable @register="registerTable">
-    <!-- <template #toolbar>
+  <div>
+    <BasicTable @register="registerTable">
+      <!-- <template #toolbar>
       <a-button type="primary" @click="handleCreate">余额充值</a-button>
     </template> -->
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'action'">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              tooltip: '审核',
-              onClick: handleEdit.bind(null, record),
-            },
-          ]"
-        />
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:note-edit-line',
+                tooltip: '审核',
+                onClick: handleEdit.bind(null, record),
+              },
+            ]"
+          />
+        </template>
       </template>
-    </template>
-  </BasicTable>
-  <EditFormModal @register="registerModal" :onSubmit="handleSubmit" />
+    </BasicTable>
+    <EditFormModal @register="registerModal" :onSubmit="handleSubmit" />
+  </div>
 </template>
 <script lang="ts" setup>
   import { BasicTable, TableAction, useTable } from '@/components/Table';

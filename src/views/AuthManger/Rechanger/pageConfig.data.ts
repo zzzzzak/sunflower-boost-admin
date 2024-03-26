@@ -14,6 +14,14 @@ export const changeStatusConfig = [
 
 export const columns: BasicColumn[] = [
   { dataIndex: 'member_username', title: '用户名' },
+  { title: '游戏账号', dataIndex: 'member_tgid' },
+  {
+    title: 'TGID',
+    dataIndex: 'tgid',
+    customRender({ text }) {
+      return (text || '').replace('GBNBL1913', '');
+    },
+  },
   { dataIndex: 'order_no', title: '订单号' },
   { dataIndex: 'real_money', title: '充值金额' },
   { dataIndex: 'change_money', title: '上分值' },

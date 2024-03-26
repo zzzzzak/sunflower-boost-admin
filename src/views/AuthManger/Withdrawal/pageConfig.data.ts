@@ -13,6 +13,14 @@ export const cashTypeConfig = [
 
 export const columns: BasicColumn[] = [
   { title: '用户ID', dataIndex: 'member_id' },
+  { title: '游戏账号', dataIndex: 'member_tgid' },
+  {
+    title: 'TGID',
+    dataIndex: 'tgid',
+    customRender({ text }) {
+      return (text || '').replace('GBNBL1913', '');
+    },
+  },
   { title: '订单号', dataIndex: 'cash_order' },
   { title: '提现金额', dataIndex: 'cash_money' },
   {

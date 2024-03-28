@@ -36,6 +36,9 @@ export const columns: BasicColumn[] = [
     dataIndex: 'api_money',
     width: 180,
   },
+
+  { title: '总充值', dataIndex: 'total_rechange' },
+  { title: '总提现', dataIndex: 'total_withdrawal' },
   { title: '总输赢', dataIndex: 'total_winlose' },
   { title: '游戏局数', dataIndex: 'game_number' },
 

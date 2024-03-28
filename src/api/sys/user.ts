@@ -10,6 +10,7 @@ enum Api {
   GetPermCode = '/getPermCode',
   TestRetry = '/testRetry',
   GetAdminAnalysis = '/admin/v1/getAdminAnalysis',
+  GetMemberAnalysis = '/admin/v1/getMemberAnalysis',
 }
 
 /**
@@ -71,3 +72,6 @@ export function testRetry() {
 export function getAdminAnalysis() {
   return defHttp.post({ url: Api.GetAdminAnalysis });
 }
+export const getMemberAnalysis = (data) => {
+  return defHttp.post({ url: Api.GetMemberAnalysis, data: data });
+};

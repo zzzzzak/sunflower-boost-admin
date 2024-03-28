@@ -16,7 +16,6 @@
 </template>
 <script lang="ts" setup>
   import { CountTo } from '@/components/CountTo';
-  import Icon from '@/components/Icon/Icon.vue';
   import { Tag, Card } from 'ant-design-vue';
   import { onMounted, ref } from 'vue';
   import { getAdminAnalysis } from '@/api/sys/user';
@@ -105,6 +104,31 @@
         icon: 'download-count|svg',
         value: res.jackpot_total_money,
         total: res.jackpot_total_money,
+        color: 'orange',
+        action: '$',
+      },
+
+      {
+        title: '总游戏余额(非实时) ',
+        icon: 'download-count|svg',
+        value: res.game_total_money,
+        total: res.game_total_money,
+        color: 'orange',
+        action: '$',
+      },
+      {
+        title: '总用户现余额',
+        icon: 'download-count|svg',
+        value: res.member_total_balance,
+        total: res.member_total_balance,
+        color: 'orange',
+        action: '$',
+      },
+      {
+        title: '平台总输赢 ',
+        icon: 'download-count|svg',
+        value: res.winlose_total_money,
+        total: res.winlose_total_money,
         color: 'orange',
         action: '$',
       },

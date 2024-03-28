@@ -8,11 +8,17 @@ export const typeConfig = [
   { label: '转出', value: 5 },
   { label: '系统', value: 6 },
   { label: '返水', value: 7 },
+  { label: '返佣', value: 8 },
+  { label: '派彩金', value: 9 },
 ];
 
 export const actionConfig = [
-  { label: '收入  ', value: '1' },
-  { label: '支出  ', value: '2' },
+  { label: '收入', value: '1', color: 'green' },
+  { label: '支出', value: '2', color: 'orange' },
+];
+export const statusConfig = [
+  { label: '已结算', value: '1', color: 'green' },
+  { label: '未结算', value: '0', color: '' },
 ];
 export const columns: BasicColumn[] = [
   { dataIndex: 'title', title: '标题' },
@@ -22,11 +28,11 @@ export const columns: BasicColumn[] = [
   { dataIndex: 'money', title: '金额' },
   { dataIndex: 'before_money', title: '变更前余额' },
   { dataIndex: 'after_money', title: '变更后余额' },
-  { dataIndex: '_action', title: '收入类型', valueEnum: actionConfig },
+  { dataIndex: 'action', title: '收入类型', valueEnum: actionConfig },
   { dataIndex: 'from_user_id', title: '来源用户编号' },
   { dataIndex: 'from_username', title: '来源用户名称' },
   { dataIndex: 'today_date', title: '日期' },
-  { dataIndex: 'status', title: '状态' },
+  { dataIndex: 'status', title: '状态', valueEnum: statusConfig },
   { dataIndex: 'memo', title: '变更备注' },
   { dataIndex: 'create_time', title: '写入时间' },
 ];

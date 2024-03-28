@@ -49,7 +49,21 @@ export const columns: BasicColumn[] = [
   { title: '下注时间', dataIndex: 'bet_time' },
   { title: '结算时间', dataIndex: 'settle_time' },
   { title: '游戏平台', dataIndex: 'platform_type' },
-  { title: '游戏类型', dataIndex: 'game_type' },
+  {
+    title: '游戏类型',
+    dataIndex: 'game_type',
+    asyncValueEnum: async () => {
+      return getGameCategory({ pageIndex: 1, pageSize: 1000 }).then((data) => {
+        const options = data.map((item) => {
+          return {
+            label: item.name,
+            value: item.enname,
+          };
+        });
+        return options;
+      });
+    },
+  },
   { title: '游戏code', dataIndex: 'game_code' },
   { title: '下注金额', dataIndex: 'bet_amount' },
   { title: '有效投注金额', dataIndex: 'valid_amount' },
@@ -67,8 +81,13 @@ export const searchFormSchema: FormSchema[] = [
     component: 'ApiSelect',
     componentProps: {
       api: getGameCategory,
+      resultField: 'list',
+      valueField: 'enname',
       labelField: 'name',
-      valueField: 'id',
+      params: {
+        pageIndex: 1,
+        pageSize: 1000,
+      },
     },
   },
   { field: 'platform_type', label: '平台', component: 'Input' },

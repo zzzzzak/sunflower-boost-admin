@@ -30,6 +30,8 @@ export const columns: BasicColumn[] = [
   { title: '账户余额', dataIndex: 'member_balance' },
 
   { title: '总投注', dataIndex: 'total_bet' },
+  { title: '总返水', dataIndex: 'total_rebate' },
+  { title: '游戏余额（非实时）', dataIndex: 'api_money' },
   { title: '总输赢', dataIndex: 'total_winlose' },
   { title: '游戏局数', dataIndex: 'game_number' },
 
@@ -57,8 +59,8 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   { label: '游戏账号', field: 'member_tgid', component: 'Input' },
-  { label: '用户昵称', field: 'member_nickname', component: 'Input' },
-  { label: '用户名', field: 'member_username', component: 'Input' },
+  // { label: '用户昵称', field: 'member_nickname', component: 'Input' },
+  // { label: '用户名', field: 'member_username', component: 'Input' },
   {
     label: '账号状态',
     field: 'member_status',

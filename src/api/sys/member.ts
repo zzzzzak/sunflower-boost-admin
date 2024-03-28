@@ -8,6 +8,10 @@ enum Api {
   ChangeBalance = '/admin/v1/ChangeBalance',
   ChangeJackpot = '/admin/v1/ChangeJackpot',
   ExchangeBalance = '/admin/v1/ExchangeBalance',
+
+  getUserApi = '/admin/v1/getUserApi',
+  getApiBalance = '/admin/v1/getApiBalance',
+  RecycleApiBalance = '/admin/v1/RecycleApiBalance',
 }
 
 export const getList = (data) => {
@@ -30,4 +34,13 @@ export const changeJackpot = (data) => {
 };
 export const exchangeBalance = (data) => {
   return defHttp.post({ url: Api.ExchangeBalance, data: data });
+};
+export const getUserApi = (data) => {
+  return defHttp.post({ url: Api.getUserApi, data: data });
+};
+export const getApiBalance = (data) => {
+  return defHttp.post({ url: Api.getApiBalance, data: data });
+};
+export const recycleApiBalance = (data) => {
+  return defHttp.post({ url: Api.RecycleApiBalance, data: data });
 };

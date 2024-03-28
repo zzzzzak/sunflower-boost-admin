@@ -6,33 +6,44 @@
         <a-button type="primary" @click="handleCreate">新增账号</a-button>
       </template>
       <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'api_money'">
+          {{ record?.api_money }}
+          <a-button size="small" type="link" @click="() => openRefreshWindow(record)">
+            刷新
+          </a-button>
+        </template>
         <template v-if="column.key === 'action'">
           <TableAction
-            :actions="[
+            :dropDownActions="[
+              {
+                icon: 'clarity:refresh-line',
+                label: '一键回收',
+                onClick: handleRecycleApiBalance.bind(null, record),
+              },
               {
                 icon: 'clarity:dollar-bill-solid',
-                tooltip: '彩金操作',
+                label: '彩金操作',
                 onClick: handleExchangeBalance.bind(null, record),
               },
               {
                 icon: 'clarity:data-cluster-solid',
-                tooltip: '彩金上下分',
+                label: '彩金上下分',
                 onClick: handleChangeJackpot.bind(null, record),
               },
               {
                 icon: 'clarity:dollar-solid',
-                tooltip: '上下分',
+                label: '上下分',
                 onClick: handleChangeBalance.bind(null, record),
               },
               {
                 icon: 'clarity:note-edit-line',
-                tooltip: '编辑用户资料',
+                label: '编辑用户资料',
                 onClick: handleEdit.bind(null, record),
               },
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
-                tooltip: '删除此账号',
+                label: '删除此账号',
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',
@@ -57,20 +68,40 @@
       @register="registerExchangeBalanceModal"
       :onSubmit="handleExchangeBalanceSubmit"
     />
+    <BasicModal @register="registerRefreshModal" title="刷新游戏余额">
+      <BasicTable @register="registerGameListTable">
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.key === 'action'">
+            <TableAction
+              :actions="[
+                {
+                  icon: 'clarity:refresh-line',
+                  tooltip: '刷新余额',
+                  onClick: handleRefreshGameMoney.bind(null, record),
+                },
+              ]"
+            />
+          </template>
+        </template>
+      </BasicTable>
+    </BasicModal>
   </div>
 </template>
 <script lang="ts" setup>
   import { BasicTable, TableAction, useTable } from '@/components/Table';
 
   import * as memberApi from '@/api/sys/member';
+  import * as gameApi from '@/api/sys/game';
   import MemberModal from './MemberModal.vue';
   import ChangeBalanceModal from './ChangeBalanceModal.vue';
   import ChangeJackpotModal from './ChangeJackpotModal.vue';
   import ExchangeBalanceModal from './ExchangeBalanceModal.vue';
-  import { useModal } from '@/components/Modal';
+  import { BasicModal, useModal } from '@/components/Modal';
 
   import { columns, searchFormSchema } from './member.data';
   import { useMessage } from '@/hooks/web/useMessage';
+  import { template } from 'xe-utils';
+  import { nextTick } from 'vue';
 
   const [registerTable, { reload }] = useTable({
     title: '会员列表',
@@ -95,7 +126,7 @@
     },
     columns,
     actionColumn: {
-      width: 190,
+      width: 60,
       title: '操作',
       dataIndex: 'action',
     },
@@ -166,6 +197,11 @@
   }
   const [registerExchangeBalanceModal, { openModal: openExchangeBalanceModal }] = useModal();
 
+  async function handleRecycleApiBalance(record: Recordable) {
+    await memberApi.recycleApiBalance({ member_id: record.member_id });
+    success('回收成功');
+    reload();
+  }
   function handleExchangeBalance(record: Recordable) {
     openExchangeBalanceModal(true, {
       record,
@@ -177,4 +213,45 @@
     reload();
     return true;
   }
+  let currentMemberId = null;
+  function openRefreshWindow(data) {
+    openRefreshModal();
+    setTimeout(() => {
+      currentMemberId = data?.member_id;
+      reloadGameList();
+    }, 100);
+  }
+  function handleRefreshGameMoney(record) {
+    memberApi.getApiBalance({ member_id: currentMemberId, plat_name: record.api_code }).then(() => {
+      reloadGameList();
+      reload();
+    });
+  }
+  const [registerRefreshModal, { openModal: openRefreshModal }] = useModal();
+  const [registerGameListTable, { reload: reloadGameList }] = useTable({
+    title: '游戏列表',
+    api: (params) =>
+      memberApi.getUserApi({
+        member_id: currentMemberId,
+        ...params,
+      }),
+    immediate: false,
+    rowKey: 'id',
+    columns: [
+      {
+        title: '游戏名称',
+        dataIndex: 'api_code',
+      },
+      {
+        title: '余额',
+        dataIndex: 'api_money',
+      },
+    ],
+
+    actionColumn: {
+      width: 90,
+      title: '操作',
+      dataIndex: 'action',
+    },
+  });
 </script>

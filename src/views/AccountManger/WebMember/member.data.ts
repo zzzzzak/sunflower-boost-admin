@@ -31,7 +31,11 @@ export const columns: BasicColumn[] = [
 
   { title: '总投注', dataIndex: 'total_bet' },
   { title: '总返水', dataIndex: 'total_rebate' },
-  { title: '游戏余额（非实时）', dataIndex: 'api_money' },
+  {
+    title: '游戏余额（非实时）',
+    dataIndex: 'api_money',
+    width: 180,
+  },
   { title: '总输赢', dataIndex: 'total_winlose' },
   { title: '游戏局数', dataIndex: 'game_number' },
 

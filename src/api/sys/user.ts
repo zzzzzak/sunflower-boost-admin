@@ -71,8 +71,8 @@ export function testRetry() {
   );
 }
 
-export function getAdminAnalysis() {
-  return defHttp.post({ url: Api.GetAdminAnalysis });
+export function getAdminAnalysis(data) {
+  return defHttp.post({ url: Api.GetAdminAnalysis, data });
 }
 export const getMemberAnalysis = (data) => {
   return defHttp.post({ url: Api.GetMemberAnalysis, data: data });

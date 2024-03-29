@@ -11,6 +11,10 @@ export const changeStatusConfig = [
   { label: '通过', value: 1 },
   { label: '拒绝', value: 2 },
 ] as Array<{ label: string; value: 0 | 1 | 2; disabled?: boolean }>;
+export const editChangeStatusConfig = [
+  { label: '通过', value: 1 },
+  { label: '拒绝', value: 2 },
+] as Array<{ label: string; value: 0 | 1 | 2; disabled?: boolean }>;
 
 export const columns: BasicColumn[] = [
   { dataIndex: 'member_username', title: '用户名' },
@@ -43,16 +47,16 @@ export const columns: BasicColumn[] = [
 ];
 
 export const searchFormSchema: FormSchema[] = [
-  { label: '用户名', field: 'member_username', component: 'Input' },
-  { label: '收款账号', field: 'bank_account', component: 'Input' },
-  {
-    label: '类型',
-    field: 'bank_type',
-    component: 'Select',
-    componentProps: {
-      options: bankTypeConfig,
-    },
-  },
+  { label: 'TGID', field: 'member_tgid', component: 'Input' },
+  // { label: '收款账号', field: 'bank_account', component: 'Input' },
+  // {
+  //   label: '类型',
+  //   field: 'bank_type',
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: bankTypeConfig,
+  //   },
+  // },
   {
     label: '审核状态',
     field: 'change_status',
@@ -62,19 +66,20 @@ export const searchFormSchema: FormSchema[] = [
     },
   },
   {
-    label: '代理ID',
-    field: 'agent_id',
-    component: 'ApiSelect',
-    componentProps: {
-      api: getAgentList,
-      resultField: 'list',
-      valueField: 'member_id',
-      labelField: 'member_username',
-      params: {
-        pageIndex: 1,
-        pageSize: 1000,
-      },
-    },
+    label: '代理TGID',
+    field: 'agent_tgid',
+    component: 'Input',
+    // component: 'ApiSelect',
+    // componentProps: {
+    //   api: getAgentList,
+    //   resultField: 'list',
+    //   valueField: 'member_tgid',
+    //   labelField: 'member_username',
+    //   params: {
+    //     pageIndex: 1,
+    //     pageSize: 1000,
+    //   },
+    // },
   },
 ];
 
@@ -85,10 +90,7 @@ export const formSchema: FormSchema[] = [
     component: 'Select',
     required: true,
     componentProps: {
-      options: changeStatusConfig.map((item, index) => {
-        item.disabled = !index;
-        return item;
-      }),
+      options: editChangeStatusConfig,
     },
   },
   { label: '审核备注', field: 'chang_auth_remark', component: 'InputTextArea' },

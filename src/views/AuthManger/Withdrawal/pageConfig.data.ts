@@ -47,19 +47,20 @@ export const columns: BasicColumn[] = [
 ];
 
 export const searchFormSchema: FormSchema[] = [
-  { label: '用户ID', field: 'member_id', component: 'Input' },
-  { label: '订单号', field: 'cash_order', component: 'Input' },
-  {
-    label: '收款类型',
-    field: 'cash_type',
-    component: 'Select',
-    componentProps: {
-      options: cashTypeConfig,
-    },
-  },
+  { label: '用户TGID', field: 'member_tgid', component: 'Input' },
+  { label: '代理TGID', field: 'agent_tgid', component: 'Input' },
+  // { label: '订单号', field: 'cash_order', component: 'Input' },
+  // {
+  //   label: '收款类型',
+  //   field: 'cash_type',
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: cashTypeConfig,
+  //   },
+  // },
   {
     label: '审核状态',
-    field: 'cash_status',
+    field: 'change_status',
     component: 'Select',
     componentProps: {
       options: cashStatusConfig,

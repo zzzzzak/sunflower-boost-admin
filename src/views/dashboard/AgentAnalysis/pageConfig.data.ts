@@ -21,7 +21,7 @@ export const searchFormSchema = [
     field: 'toTime',
     component: 'RangePicker',
     componentProps: {
-      showTime: true,
+      valueFormat: 'YYYY-MM-DD',
     },
   },
 ];

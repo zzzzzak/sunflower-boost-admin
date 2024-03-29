@@ -30,3 +30,15 @@ export const columns: BasicColumn[] = [
   { title: '总游戏余额（非实时）', dataIndex: 'api_money' },
   { title: '游戏局数', dataIndex: 'game_number' },
 ];
+
+export const searchFormSchema = [
+  { label: '游戏账号', field: 'member_tgid', component: 'Input' },
+  {
+    label: '时间',
+    field: 'toTime',
+    component: 'RangePicker',
+    componentProps: {
+      valueFormat: 'YYYY-MM-DD',
+    },
+  },
+];

@@ -3,7 +3,7 @@
     <BasicTable @register="registerTable">
       <template #form-custom> custom-slot </template>
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增账号</a-button>
+        <a-button type="primary" @click="handleCreate">新增</a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'api_money'">
@@ -100,7 +100,6 @@
 
   import { columns, searchFormSchema } from './member.data';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { template } from 'xe-utils';
   import { nextTick } from 'vue';
 
   const [registerTable, { reload }] = useTable({

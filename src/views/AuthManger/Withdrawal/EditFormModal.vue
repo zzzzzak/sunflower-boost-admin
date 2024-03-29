@@ -50,7 +50,7 @@
     }
   });
 
-  const getTitle = computed(() => (!unref(editType) ? '新增账号' : '编辑账号'));
+  const getTitle = computed(() => (!unref(editType) ? '新增' : '编辑'));
 
   async function handleSubmit() {
     try {

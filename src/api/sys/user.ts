@@ -11,6 +11,8 @@ enum Api {
   TestRetry = '/testRetry',
   GetAdminAnalysis = '/admin/v1/getAdminAnalysis',
   GetMemberAnalysis = '/admin/v1/getMemberAnalysis',
+  getAgentAnalysis = '/admin/v1/getAgentAnalysis',
+  getAgentMemberAnalysis = '/admin/v1/getAgentMemberAnalysis',
 }
 
 /**
@@ -75,3 +77,10 @@ export function getAdminAnalysis() {
 export const getMemberAnalysis = (data) => {
   return defHttp.post({ url: Api.GetMemberAnalysis, data: data });
 };
+
+export function getAgentAnalysis(data) {
+  return defHttp.post({ url: Api.getAgentAnalysis, data });
+}
+export function getAgentMemberAnalysis(data) {
+  return defHttp.post({ url: Api.getAgentMemberAnalysis, data });
+}

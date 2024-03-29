@@ -5,9 +5,7 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable } from '@/components/Table';
-
   import * as userApi from '@/api/sys/user';
-
   import { columns } from './pageConfig.data';
 
   const [registerTable] = useTable({

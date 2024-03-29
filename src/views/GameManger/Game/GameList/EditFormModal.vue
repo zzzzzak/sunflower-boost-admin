@@ -51,7 +51,7 @@
     }
   });
 
-  const getTitle = computed(() => (!unref(isUpdate) ? '新增账号' : '编辑账号'));
+  const getTitle = computed(() => (!unref(isUpdate) ? '新增游戏' : '编辑游戏'));
 
   async function handleSubmit() {
     try {

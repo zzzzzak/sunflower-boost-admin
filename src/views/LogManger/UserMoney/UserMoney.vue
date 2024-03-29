@@ -7,7 +7,7 @@
   import { columns, searchFormSchema } from './pageConfig.data';
 
   const [registerTable] = useTable({
-    title: '余额日志列车',
+    title: '余额日志列表',
     api: ({ toTime, ...params }) => {
       if (Array.isArray(toTime) && toTime.length) {
         params.toTime = toTime[0];

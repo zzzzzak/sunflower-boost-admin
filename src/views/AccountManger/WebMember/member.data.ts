@@ -208,7 +208,25 @@ export const changeJackpotFormSchema: FormSchema[] = [
     },
   },
 ];
+
+const exchangeBalanceTypeConfig = [
+  {
+    label: '彩金转余额',
+    value: 1,
+  },
+  {
+    label: '余额转彩金',
+    value: 2,
+  },
+];
 export const exchangeBalanceFormSchema: FormSchema[] = [
+  {
+    field: 'type',
+    label: '类型',
+    component: 'Select',
+    required: true,
+    componentProps: { options: exchangeBalanceTypeConfig },
+  },
   {
     field: 'balance',
     label: '金额',

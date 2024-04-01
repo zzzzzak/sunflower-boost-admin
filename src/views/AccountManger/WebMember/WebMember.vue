@@ -3,6 +3,7 @@
     <BasicTable @register="registerTable">
       <template #form-custom> custom-slot </template>
       <template #toolbar>
+        <a-button type="primary" @click="handleExport">导出</a-button>
         <a-button type="primary" @click="handleCreate">新增</a-button>
       </template>
       <template #bodyCell="{ column, record }">
@@ -89,9 +90,9 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, TableAction, useTable } from '@/components/Table';
+  import qs from 'qs';
 
   import * as memberApi from '@/api/sys/member';
-  import * as gameApi from '@/api/sys/game';
   import MemberModal from './MemberModal.vue';
   import ChangeBalanceModal from './ChangeBalanceModal.vue';
   import ChangeJackpotModal from './ChangeJackpotModal.vue';
@@ -100,9 +101,9 @@
 
   import { columns, searchFormSchema } from './member.data';
   import { useMessage } from '@/hooks/web/useMessage';
-  import { nextTick } from 'vue';
+  import { getAppEnvConfig } from '@/utils/env';
 
-  const [registerTable, { reload }] = useTable({
+  const [registerTable, { reload, getForm }] = useTable({
     title: '会员列表',
     api: ({ toTime, ...params }) => {
       if (Array.isArray(toTime) && toTime.length) {
@@ -205,6 +206,15 @@
     openExchangeBalanceModal(true, {
       record,
     });
+  }
+  function handleExport() {
+    const { toTime, ...params } = getForm().getFieldsValue();
+    if (Array.isArray(toTime) && toTime.length) {
+      params.toTime = toTime[0];
+      params.formTime = toTime[1];
+    }
+    const paramsStr = qs.stringify(params);
+    location.href = `${getAppEnvConfig().VITE_GLOB_API_URL}/admin/v1/ExportMemberReport${paramsStr ? `?${paramsStr}` : ''}`;
   }
   async function handleExchangeBalanceSubmit({ values }) {
     await memberApi.exchangeBalance(values);

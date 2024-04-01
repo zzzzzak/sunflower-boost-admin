@@ -27,6 +27,7 @@ export const columns: BasicColumn[] = [
   { title: '用户昵称', dataIndex: 'member_nickname' },
   { title: '用户名', dataIndex: 'member_username' },
   // { title: '头像地址', dataIndex: 'member_portrait' },
+  { title: '彩金余额', dataIndex: 'member_jackpot' },
   { title: '账户余额', dataIndex: 'member_balance' },
 
   { title: '总投注', dataIndex: 'total_bet' },

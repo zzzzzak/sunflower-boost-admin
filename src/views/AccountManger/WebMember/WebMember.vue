@@ -207,14 +207,14 @@
       record,
     });
   }
-  function handleExport() {
+  async function handleExport() {
     const { toTime, ...params } = getForm().getFieldsValue();
     if (Array.isArray(toTime) && toTime.length) {
       params.toTime = toTime[0];
       params.formTime = toTime[1];
     }
-    const paramsStr = qs.stringify(params);
-    location.href = `${getAppEnvConfig().VITE_GLOB_API_URL}/admin/v1/ExportMemberReport${paramsStr ? `?${paramsStr}` : ''}`;
+    const { url } = await memberApi.exportMemberReport(params);
+    location.href = url;
   }
   async function handleExchangeBalanceSubmit({ values }) {
     await memberApi.exchangeBalance(values);

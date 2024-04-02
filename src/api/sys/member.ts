@@ -12,6 +12,7 @@ enum Api {
   getUserApi = '/admin/v1/getUserApi',
   getApiBalance = '/admin/v1/getApiBalance',
   RecycleApiBalance = '/admin/v1/RecycleApiBalance',
+  ExportMemberReport = '/admin/v1/ExportMemberReport',
 }
 
 export const getList = (data) => {
@@ -43,4 +44,7 @@ export const getApiBalance = (data) => {
 };
 export const recycleApiBalance = (data) => {
   return defHttp.post({ url: Api.RecycleApiBalance, data: data });
+};
+export const exportMemberReport = (data) => {
+  return defHttp.post({ url: Api.ExportMemberReport, data: data });
 };

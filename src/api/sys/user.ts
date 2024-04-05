@@ -4,15 +4,15 @@ import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userMod
 import { ErrorMessageMode } from '#/axios';
 
 enum Api {
-  Login = '/admin/v1/LoginUser',
-  Logout = '/admin/v1/Logout',
-  GetUserInfo = '/admin/v1/getUserInfo',
+  Login = '/admin-user/login',
+  Logout = '/admin/Logout',
+  GetUserInfo = '/admin-user/getUserInfo',
   GetPermCode = '/getPermCode',
   TestRetry = '/testRetry',
-  GetAdminAnalysis = '/admin/v1/getAdminAnalysis',
-  GetMemberAnalysis = '/admin/v1/getMemberAnalysis',
-  getAgentAnalysis = '/admin/v1/getAgentAnalysis',
-  getAgentMemberAnalysis = '/admin/v1/getAgentMemberAnalysis',
+  GetAdminAnalysis = '/analysis/getAnalysis',
+  GetMemberAnalysis = '/admin/getMemberAnalysis',
+  getAgentAnalysis = '/admin/getAgentAnalysis',
+  getAgentMemberAnalysis = '/admin/getAgentMemberAnalysis',
 }
 
 /**
@@ -34,19 +34,17 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
  * @description: getUserInfo
  */
 export function getUserInfo() {
-  return defHttp
-    .post<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: 'none' })
-    .then((res) => {
-      if (res.roles && res.roles.length > 0) {
-        res.roles = [
-          {
-            roleName: 'Super Admin',
-            value: 'super',
-          },
-        ];
-      }
-      return res;
-    });
+  return defHttp.post<GetUserInfoModel>({ url: Api.GetUserInfo }).then((res) => {
+    if (res.roles && res.roles.length > 0) {
+      res.roles = [
+        {
+          roleName: 'Super Admin',
+          value: 'super',
+        },
+      ];
+    }
+    return res;
+  });
 }
 
 export function getPermCode() {

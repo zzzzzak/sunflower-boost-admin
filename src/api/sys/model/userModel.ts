@@ -2,8 +2,8 @@
  * @description: Login interface parameters
  */
 export interface LoginParams {
-  member_username?: string;
-  member_password?: string;
+  username?: string;
+  password?: string;
   verify_code?: string;
 }
 

@@ -35,12 +35,7 @@
       }
       return userApi.getAgentAnalysis(params);
     },
-    fetchSetting: {
-      pageField: 'pageIndex',
-      sizeField: 'pageSize',
-      listField: 'list',
-      totalField: 'total',
-    },
+   
     useSearchForm: true,
     showTableSetting: true,
     tableSetting: { fullScreen: true },
@@ -80,12 +75,7 @@
     },
     immediate: false,
     rowKey: 'id',
-    fetchSetting: {
-      pageField: 'pageIndex',
-      sizeField: 'pageSize',
-      listField: 'list',
-      totalField: 'total',
-    },
+   
     useSearchForm: true,
     showTableSetting: true,
     tableSetting: { fullScreen: true },

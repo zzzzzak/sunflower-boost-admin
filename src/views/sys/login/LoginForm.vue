@@ -137,8 +137,8 @@
     try {
       loading.value = true;
       const userInfo = await userStore.login({
-        member_password: data.password,
-        member_username: data.account,
+        password: data.password,
+        username: data.account,
         verify_code: data.verify_code,
         mode: 'none', //不要默认的错误提示
       });

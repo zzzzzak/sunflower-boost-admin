@@ -3,17 +3,17 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable } from '@/components/Table';
-  import * as logApi from '@/api/sys/log';
+  import * as memberApi from '@/api/sys/member.ts';
   import { columns, searchFormSchema } from './pageConfig.data';
 
   const [registerTable] = useTable({
-    title: '余额日志列表',
+    title: '用户列表',
     api: ({ toTime, ...params }) => {
       if (Array.isArray(toTime) && toTime.length) {
         params.toTime = toTime[0];
         params.formTime = toTime[1];
       }
-      return logApi.getUserMoneyLogList(params);
+      return memberApi.getList(params);
     },
 
     useSearchForm: true,
@@ -31,4 +31,3 @@
     columns,
   });
 </script>
-./pageConfig.data

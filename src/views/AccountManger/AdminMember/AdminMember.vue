@@ -51,12 +51,7 @@
       }
       return memberApi.getList(params);
     },
-    fetchSetting: {
-      pageField: 'pageIndex',
-      sizeField: 'pageSize',
-      listField: 'list',
-      totalField: 'total',
-    },
+   
     useSearchForm: true,
     showTableSetting: true,
     tableSetting: { fullScreen: true },

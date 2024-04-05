@@ -1,7 +1,7 @@
 import { defHttp } from '@/utils/http/axios';
 
 enum Api {
-  GetList = '/admin/v1/getMemberList',
+  GetList = '/user',
   UpdateData = '/admin/v1/UpgradeMember',
   AddData = '/admin/v1/AddMember',
   DeleteData = '/admin/v1/DeleteMember',
@@ -15,8 +15,13 @@ enum Api {
   ExportMemberReport = '/admin/v1/ExportMemberReport',
 }
 
-export const getList = (data) => {
-  return defHttp.post({ url: Api.GetList, data: data });
+export const getList = (params) => {
+  return defHttp.get(
+    { url: Api.GetList, params },
+    {
+      isTransformResponse: false,
+    },
+  );
 };
 export const updateData = (data) => {
   return defHttp.post({ url: Api.UpdateData, data: data });

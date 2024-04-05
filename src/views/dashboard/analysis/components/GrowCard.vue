@@ -1,9 +1,9 @@
 <template>
   <div>
-    <BasicForm submitOnReset @register="registerForm" @submit="handleSearchInfoChange" />
+    <!-- <BasicForm submitOnReset @register="registerForm" @submit="handleSearchInfoChange" /> -->
     <div class="md:flex flex-wrap">
       <template v-for="item in growCardList" :key="item.title">
-        <Card size="small" :loading="loading" :title="item.title" class="md:w-1/6 w-full m-2">
+        <Card size="small" :loading="loading" :title="item.title" class="md:w-1/3 w-full">
           <template #extra>
             <Tag :color="item.color">{{ item.action }}</Tag>
           </template>
@@ -55,7 +55,7 @@
       {
         title: '注册用户',
         icon: 'visit-count|svg',
-        value: res.user_count,
+        value: res.userCount,
         total: 120000,
         color: 'green',
         action: '位',
@@ -63,95 +63,69 @@
       // {
       //   title: '今日充值',
       //   icon: 'total-sales|svg',
-      //   value: res.rechange_today_money,
-      //   total: res.rechange_today_money,
+      //   value: res.rechangeTodayMoney,
+      //   total: res.rechangeTodayMoney,
       //   color: 'blue',
-      //   action: '$',
+      //   action: 'DOGE',
       // },
       // {
       //   title: '今日提现',
       //   icon: 'download-count|svg',
-      //   value: res.withdrawal_today_money,
-      //   total: res.withdrawal_today_money,
+      //   value: res.withdrawalTodayMoney,
+      //   total: res.withdrawalTodayMoney,
       //   color: 'orange',
-      //   action: '$',
+      //   action: 'DOGE',
       // },
       {
         title: '总充值',
         icon: 'total-sales|svg',
-        value: res.rechange_total_money,
-        total: res.rechange_total_money,
+        value: res.rechangeTotalMoney,
+        total: res.rechangeTotalMoney,
         color: 'blue',
-        action: '$',
+        action: 'DOGE',
       },
       {
         title: '总提现',
         icon: 'download-count|svg',
-        value: res.withdrawal_total_money,
-        total: res.withdrawal_total_money,
+        value: res.withdrawalTotalMoney,
+        total: res.withdrawalTotalMoney,
         color: 'orange',
-        action: '$',
+        action: 'DOGE',
       },
 
       {
-        title: '总投注',
+        title: '总慈善',
         icon: 'download-count|svg',
-        value: res.bet_total_money,
-        total: res.bet_total_money,
+        value: res.charityAmount,
+        total: res.charityAmount,
         color: 'orange',
-        action: '$',
+        action: 'DOGE',
       },
 
-      {
-        title: '总返水',
-        icon: 'download-count|svg',
-        value: res.fanshui_total_money,
-        total: res.fanshui_total_money,
-        color: 'orange',
-        action: '$',
-      },
+      // {
+      //   title: '总返水',
+      //   icon: 'download-count|svg',
+      //   value: res.fanshuiTotalMoney,
+      //   total: res.fanshuiTotalMoney,
+      //   color: 'orange',
+      //   action: 'DOGE',
+      // },
 
       {
-        title: '总返佣',
+        title: '总返润',
         icon: 'download-count|svg',
-        value: res.commission_total_money,
-        total: res.commission_total_money,
+        value: res.commissionTotalMoney,
+        total: res.commissionTotalMoney,
         color: 'orange',
-        action: '$',
-      },
-
-      {
-        title: '总彩金',
-        icon: 'download-count|svg',
-        value: res.jackpot_total_money,
-        total: res.jackpot_total_money,
-        color: 'orange',
-        action: '$',
-      },
-
-      {
-        title: '总游戏余额(非实时) ',
-        icon: 'download-count|svg',
-        value: res.game_total_money,
-        total: res.game_total_money,
-        color: 'orange',
-        action: '$',
+        action: 'DOGE',
       },
       {
-        title: '总用户现余额',
+        title: '总冻结',
         icon: 'download-count|svg',
-        value: res.member_total_balance,
-        total: res.member_total_balance,
+        value: res.frozenAmount,
+        total: res.frozenAmount,
         color: 'orange',
-        action: '$',
-      },
-      {
-        title: '平台总输赢 ',
-        icon: 'download-count|svg',
-        value: res.winlose_total_money,
-        total: res.winlose_total_money,
-        color: 'orange',
-        action: '$',
+        action: 'DOGE',
       },
     ];
   }

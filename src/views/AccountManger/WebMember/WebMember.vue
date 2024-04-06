@@ -44,7 +44,7 @@
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
-                label: '删除此账号',
+                label: '删除此数据',
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',

@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable } from '@/components/Table';
-  import * as memberApi from '@/api/sys/member.ts';
+  import * as adminApi from '@/api/admin/index.ts';
   import { columns, searchFormSchema } from './pageConfig.data';
 
   const [registerTable] = useTable({
@@ -13,7 +13,7 @@
         params.toTime = toTime[0];
         params.formTime = toTime[1];
       }
-      return memberApi.getList(params);
+      return adminApi.getUserList(params);
     },
 
     useSearchForm: true,

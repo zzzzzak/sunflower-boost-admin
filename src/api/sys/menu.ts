@@ -4,7 +4,7 @@ import { getMenuListResultModel } from './model/menuModel';
 enum Api {
   // GetMenuList = '/getMenuList',
   // GetMenuList = '/admin/v1/getAuthRuleList',
-  GetMenuList = '/menu/getMenuList',
+  GetMenuList = '/admin/menu/getMenuList',
 }
 
 /**

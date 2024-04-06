@@ -21,7 +21,7 @@
   import { CountTo } from '@/components/CountTo';
   import { Tag, Card } from 'ant-design-vue';
   import { onMounted, ref } from 'vue';
-  import { getAdminAnalysis } from '@/api/sys/user';
+  import { getAdminAnalysis } from '@/api/admin/index';
   import { GrowCardItem } from '../data';
   import { BasicForm, useForm } from '@/components/Form';
 
@@ -112,7 +112,7 @@
       // },
 
       {
-        title: '总返润',
+        title: '总分润',
         icon: 'download-count|svg',
         value: res.commissionTotalMoney,
         total: res.commissionTotalMoney,

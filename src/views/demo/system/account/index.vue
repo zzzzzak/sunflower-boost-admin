@@ -22,7 +22,7 @@
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
-                tooltip: '删除此账号',
+                tooltip: '删除此数据',
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',

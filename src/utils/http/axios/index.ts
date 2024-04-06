@@ -19,6 +19,7 @@ import { joinTimestamp, formatRequestDate } from './helper';
 import { useUserStoreWithOut } from '@/store/modules/user';
 import { AxiosRetry } from '@/utils/http/axios/axiosRetry';
 import axios from 'axios';
+import qs from 'qs';
 
 const globSetting = useGlobSetting();
 const urlPrefix = globSetting.urlPrefix;
@@ -269,6 +270,11 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
             count: 5,
             waitTime: 100,
           },
+        },
+        paramsSerializer: (params) => {
+          return qs.stringify(params, {
+            arrayFormat: 'repeat',
+          });
         },
       },
       opt || {},

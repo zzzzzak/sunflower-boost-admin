@@ -7,7 +7,7 @@
   import { ref, computed, unref } from 'vue';
   import { BasicModal, useModalInner } from '@/components/Modal';
   import { BasicForm, useForm } from '@/components/Form';
-  import { formSchema, audioSchema } from './pageConfig.data';
+  import { formSchema } from './pageConfig.data';
 
   defineOptions({ name: 'AgentModal' });
   const props = defineProps({
@@ -24,7 +24,7 @@
   const rowId = ref('');
 
   const [registerForm, { setFieldsValue, resetFields, resetSchema, validate }] = useForm({
-    labelWidth: 100,
+    labelWidth: 120,
     baseColProps: { span: 24 },
     schemas: formSchema,
     showActionButtonGroup: false,
@@ -45,7 +45,7 @@
       resetSchema(formSchema);
     } else if (unref(editType) === 1) {
       rowId.value = data.record.id;
-      resetSchema(audioSchema);
+      // resetSchema(audioSchema);
     }
   });
 
@@ -62,7 +62,6 @@
         values: { ...values },
       };
       if (unref(editType) === 0) {
-        params.values.cash_order = rowId.value;
       } else if (unref(editType) === 1) {
         params.values.id = rowId.value;
       }

@@ -1,7 +1,7 @@
 import { defHttp } from '@/utils/http/axios';
 
 enum Api {
-  GetList = '/user',
+  GetList = '/admin/userList',
   UpdateData = '/admin/v1/UpgradeMember',
   AddData = '/admin/v1/AddMember',
   DeleteData = '/admin/v1/DeleteMember',

@@ -16,7 +16,7 @@
     <div class="container relative h-full py-2 mx-auto sm:px-10">
       <div class="flex h-full">
         <div class="hidden min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
-          <AppLogo class="-enter-x" />
+          <!-- <AppLogo class="-enter-x" /> -->
           <div class="my-auto">
             <img
               :alt="title"
@@ -116,8 +116,8 @@
 
     /* stylelint-disable-next-line media-query-no-invalid */
     @media (max-width: @screen-xl) {
-      background-color: #0abab5;
-
+      background-color: #53d077;
+      background-image: linear-gradient(45deg, #01d6d0, transparent);
       .@{prefix-cls}-form {
         background-color: #fff;
       }

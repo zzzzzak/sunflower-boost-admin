@@ -52,6 +52,9 @@ enum Api {
   staticPoolDetail = '/admin/detail/staticPool/detail',
   staticPoolDelete = '/admin/detail/staticPool/delete',
 
+  systemConfigDetail = '/admin/systemConfig/detail',
+  systemConfigUpdate = '/admin/systemConfig/update',
+
   GetAdminAnalysis = '/admin/analysis/getAnalysis',
 }
 
@@ -182,6 +185,12 @@ export const staticPoolDetail = (params) => {
 };
 export const staticPoolDelete = (params) => {
   return defHttp.post({ url: Api.staticPoolDelete, params });
+};
+export const systemConfigDetail = () => {
+  return defHttp.get({ url: Api.systemConfigDetail });
+};
+export const systemConfigUpdate = (data) => {
+  return defHttp.post({ url: Api.systemConfigUpdate, data });
 };
 
 export const getMenuList = () => {

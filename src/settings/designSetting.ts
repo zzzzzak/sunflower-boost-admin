@@ -1,6 +1,6 @@
 import { ThemeEnum } from '../enums/appEnum';
 
-export const prefixCls = 'bolai';
+export const prefixCls = 'sunflower';
 
 export const multipleTabHeight = 30;
 

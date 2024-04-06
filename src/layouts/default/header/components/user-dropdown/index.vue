@@ -51,7 +51,7 @@
   import { useI18n } from '@/hooks/web/useI18n';
   import { useDesign } from '@/hooks/web/useDesign';
   import { useModal } from '@/components/Modal';
-  import headerImg from '@/assets/images/header.jpg';
+  import headerImg from '@/assets/images/logo-avatar.gif';
   import { propTypes } from '@/utils/propTypes';
   import { openWindow } from '@/utils';
   import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';

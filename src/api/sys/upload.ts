@@ -17,13 +17,14 @@ export function uploadApi(
     .uploadFile<UploadApiResult>(
       {
         baseURL: uploadUrl,
-        url: '/admin/v1/UploadFile',
+        url: '/upload',
         onUploadProgress,
       },
       params,
     )
     .then((res: any) => {
-      res.data.url = res.data.data.path;
+      res.data.url = res.data.data.filePath;
+      console.log(res);
       return res;
     });
 }

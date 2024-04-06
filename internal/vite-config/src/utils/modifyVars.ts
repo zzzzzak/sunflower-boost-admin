@@ -7,7 +7,7 @@ import { theme } from 'ant-design-vue/lib';
 import convertLegacyToken from 'ant-design-vue/lib/theme/convertLegacyToken';
 
 const { defaultAlgorithm, defaultSeed } = theme;
-const primaryColor = '#0abab5';
+const primaryColor = '#53d077';
 
 function generateAntColors(color: string, theme: 'default' | 'dark' = 'default') {
   return generate(color, {

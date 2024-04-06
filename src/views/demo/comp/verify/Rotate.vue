@@ -8,7 +8,7 @@
 <script lang="ts" setup>
   import { RotateDragVerify } from '@/components/Verify';
 
-  import img from '@/assets/images/header.jpg';
+  import img from '@/assets/images/logo-avatar.gif';
 
   import { PageWrapper } from '@/components/Page';
 

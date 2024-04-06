@@ -25,7 +25,7 @@
     Object.assign(
       {
         token: {
-          colorPrimary: '#0abab5',
+          colorPrimary: '#53d077',
           colorSuccess: '#55D187',
           colorWarning: '#EFBD47',
           colorError: '#ED6F6F',

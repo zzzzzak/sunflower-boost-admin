@@ -4,7 +4,7 @@
       <Col :span="14">
         <BasicForm @register="register" />
       </Col>
-      <Col :span="10">
+      <!-- <Col :span="10">
         <div class="change-avatar">
           <div class="mb-2">头像</div>
           <CropperAvatar
@@ -16,7 +16,7 @@
             width="150"
           />
         </div>
-      </Col>
+      </Col> -->
     </Row>
     <a-button type="primary" @click="handleSubmit"> 更新基本信息 </a-button>
   </CollapseContainer>
@@ -26,27 +26,26 @@
   import { computed, onMounted } from 'vue';
   import { BasicForm, useForm } from '@/components/Form';
   import { CollapseContainer } from '@/components/Container';
-  import { CropperAvatar } from '@/components/Cropper';
 
   import { useMessage } from '@/hooks/web/useMessage';
 
   import headerImg from '@/assets/images/logo-avatar.gif';
-  import { accountInfoApi } from '@/api/demo/account';
+  import { systemConfigDetail, systemConfigUpdate } from '@/api/admin/index';
   import { baseSetschemas } from './data';
   import { useUserStore } from '@/store/modules/user';
-  import { uploadApi } from '@/api/sys/upload';
 
   const { createMessage } = useMessage();
   const userStore = useUserStore();
 
-  const [register, { setFieldsValue }] = useForm({
-    labelWidth: 120,
+  const [register, { setFieldsValue, getFieldsValue }] = useForm({
+    labelWidth: 180,
+    baseColProps: { span: 24 },
     schemas: baseSetschemas,
     showActionButtonGroup: false,
   });
 
   onMounted(async () => {
-    const data = await accountInfoApi();
+    const data = await systemConfigDetail();
     setFieldsValue(data);
   });
 
@@ -64,7 +63,10 @@
   }
 
   function handleSubmit() {
+    const user = getFieldsValue();
+    console.log(user);
     createMessage.success('更新成功！');
+    systemConfigUpdate(user);
   }
 </script>
 

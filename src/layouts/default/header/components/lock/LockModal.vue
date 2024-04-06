@@ -33,7 +33,7 @@
 
   import { useUserStore } from '@/store/modules/user';
   import { useLockStore } from '@/store/modules/lock';
-  import headerImg from '@/assets/images/header.jpg';
+  import headerImg from '@/assets/images/logo-avatar.gif';
 
   defineOptions({ name: 'LockModal' });
 
@@ -42,7 +42,7 @@
   const userStore = useUserStore();
   const lockStore = useLockStore();
 
-  const getRealName = computed(() => userStore.getUserInfo?.realName);
+  const getRealName = computed(() => userStore.getUserInfo?.username);
   const [register, { closeModal }] = useModalInner();
 
   const [registerForm, { validate, resetFields }] = useForm({

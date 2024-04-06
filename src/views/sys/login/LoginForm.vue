@@ -1,5 +1,4 @@
 <template>
-  <LoginFormTitle v-show="getShow" class="enter-x" />
   <Form
     class="p-4 enter-x"
     :model="formData"
@@ -8,6 +7,8 @@
     v-show="getShow"
     @keypress.enter="handleLogin"
   >
+    <LoginFormTitle v-show="getShow" class="enter-x" />
+
     <FormItem name="account" class="enter-x">
       <Input
         size="large"
@@ -145,7 +146,7 @@
       if (userInfo) {
         notification.success({
           message: t('sys.login.loginSuccessTitle'),
-          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
+          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.username}`,
           duration: 3,
         });
       }

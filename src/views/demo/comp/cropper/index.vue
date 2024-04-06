@@ -37,7 +37,7 @@
   import { CollapseContainer } from '@/components/Container';
   import { CropperImage, CropperAvatar } from '@/components/Cropper';
   import { uploadApi } from '@/api/sys/upload';
-  import img from '@/assets/images/header.jpg';
+  import img from '@/assets/images/logo-avatar.gif';
   import { useUserStore } from '@/store/modules/user';
 
   const info = ref('');

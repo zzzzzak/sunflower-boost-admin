@@ -122,4 +122,9 @@ export const searchFormSchema: FormSchema[] = [
       ],
     },
   },
+  {
+    field: 'createdAt',
+    label: '订单创建时间',
+    component: 'RangePicker',
+  },
 ];

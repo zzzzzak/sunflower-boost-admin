@@ -64,4 +64,9 @@ export const searchFormSchema: FormSchema[] = [
       options: commissionTypeOptions,
     },
   },
+  {
+    field: 'createdAt',
+    label: '订单创建时间',
+    component: 'RangePicker',
+  },
 ];

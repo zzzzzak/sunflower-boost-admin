@@ -17,6 +17,22 @@ export const columns: BasicColumn[] = [
     dataIndex: 'sort',
   },
   {
+    title: '隐藏购买',
+    dataIndex: 'show',
+    valueEnum: [
+      {
+        label: '隐藏',
+        value: 1,
+        color: 'gray',
+      },
+      {
+        label: '显示',
+        value: 0,
+        color: 'success',
+      },
+    ],
+  },
+  {
     title: '全局分润比例',
     dataIndex: 'globalProfitRate',
   },
@@ -51,6 +67,24 @@ export const formSchema: FormSchema[] = [
     label: '等级名称',
     component: 'Input',
     required: true,
+  },
+  {
+    field: 'purchaseAmount',
+    label: '等级购买金额',
+    component: 'InputNumber',
+    required: true,
+  },
+  {
+    field: 'show',
+    label: '隐藏购买',
+    component: 'Switch',
+    required: true,
+    componentProps: {
+      checkedChildren: '展示',
+      unCheckedChildren: '隐藏',
+      checkedValue: 0,
+      unCheckedValue: 1,
+    },
   },
   {
     field: 'purchaseAmount',

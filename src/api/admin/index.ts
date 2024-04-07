@@ -54,6 +54,11 @@ enum Api {
   staticPoolDetail = '/admin/detail/staticPool/detail',
   staticPoolDelete = '/admin/detail/staticPool/delete',
 
+  // 慈善金订单
+  charityListpage = '/admin/detail/charity/listpage',
+  charityDetail = '/admin/detail/charity/detail',
+  charityDelete = '/admin/detail/charity/delete',
+
   systemConfigDetail = '/admin/systemConfig/detail',
   systemConfigUpdate = '/admin/systemConfig/update',
 
@@ -195,6 +200,17 @@ export const staticPoolDetail = (params) => {
 export const staticPoolDelete = (params) => {
   return defHttp.post({ url: Api.staticPoolDelete, params });
 };
+
+export const charityListpage = (params?: any) => {
+  return defHttp.get({ url: Api.charityListpage, params }, { isTransformResponse: false });
+};
+export const charityDetail = (params) => {
+  return defHttp.get({ url: Api.charityDetail, params });
+};
+export const charityDelete = (params) => {
+  return defHttp.post({ url: Api.charityDelete, params });
+};
+
 export const systemConfigDetail = () => {
   return defHttp.get({ url: Api.systemConfigDetail });
 };

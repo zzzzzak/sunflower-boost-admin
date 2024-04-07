@@ -62,11 +62,9 @@
     console.log('data', data);
   }
 
-  function handleSubmit() {
-    const user = getFieldsValue();
-    console.log(user);
+  async function handleSubmit() {
+    await systemConfigUpdate(getFieldsValue());
     createMessage.success('更新成功！');
-    systemConfigUpdate(user);
   }
 </script>
 

@@ -10,7 +10,7 @@
             :dropDownActions="[
               {
                 icon: 'clarity:user-line',
-                label: '用户信息',
+                label: '会员信息',
                 onClick: openUserListWindow.bind(null, record),
               },
               // {
@@ -35,8 +35,8 @@
       </template>
     </BasicTable>
     <EditFormModal @register="registerModal" width="1200px" :onSubmit="handleSubmit" />
-    <BasicModal @register="registerUserListModal" title="用户信息" width="1200px">
-      <BasicTable @register="registerUserListTable" />
+    <BasicModal destroy-on-close @register="registerUserListModal" title="用户信息" width="1200px">
+      <MemberList :use-search-form="false" :search-params="{ id: currentUserId }" />
     </BasicModal>
   </div>
 </template>
@@ -44,10 +44,11 @@
   import { BasicTable, TableAction, useTable } from '@/components/Table';
   import * as adminApi from '@/api/admin/index';
   import { columns, searchFormSchema } from './pageConfig.data';
-  import { columns as userListColumns } from '../../member/list/pageConfig.data';
   import EditFormModal from './EditFormModal.vue';
   import { BasicModal, useModal } from '@/components/Modal';
   import { useMessage } from '@/hooks/web/useMessage';
+  import { ref } from 'vue';
+  import MemberList from '@/components/BusinessComponents/MemberList/index.vue';
 
   const [registerTable, { reload }] = useTable({
     title: '分润明细列表',
@@ -109,24 +110,11 @@
     reload();
   }
 
-  let currentUserId = null;
+  const currentUserId = ref(null);
+
   function openUserListWindow(data) {
     openUserListModal();
-    setTimeout(() => {
-      currentUserId = data?.userId;
-      reloadUserList();
-    }, 100);
+    currentUserId.value = data?.userId;
   }
   const [registerUserListModal, { openModal: openUserListModal }] = useModal();
-  const [registerUserListTable, { reload: reloadUserList }] = useTable({
-    title: '分润明细列表',
-    api: (params) =>
-      adminApi.getUserList({
-        id: currentUserId,
-        ...params,
-      }),
-    immediate: false,
-    rowKey: 'id',
-    columns: userListColumns,
-  });
 </script>

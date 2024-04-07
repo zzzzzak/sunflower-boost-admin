@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <BasicTable @register="register">
+    <BasicTable @register="register" @expand="handleExpan">
       <template #toolbar>
         <a-button type="primary" @click="expandAll">展开全部</a-button>
         <a-button type="primary" @click="collapseAll">折叠全部</a-button>
@@ -13,6 +13,10 @@
 <script lang="ts" setup>
   import { BasicTable, useTable } from '@/components/Table';
   import { getBasicColumns, getTreeTableData } from './tableData';
+
+  function handleExpan(...rest) {
+    console.log(rest);
+  }
 
   const [register, { expandAll, collapseAll, expandRows, collapseRows }] = useTable({
     title: '树形表格',

@@ -34,8 +34,8 @@
       </template>
     </BasicTable>
     <EditFormModal @register="registerModal" width="1200px" :onSubmit="handleSubmit" />
-    <BasicModal @register="registerUserListModal" title="用户列表" width="1200px">
-      <BasicTable @register="registerUserListTable" />
+    <BasicModal destroy-on-close @register="registerUserListModal" title="用户列表" width="1200px">
+      <MemberList :use-search-form="false" :search-params="{ levelId: currentLevelId }" />
     </BasicModal>
   </div>
 </template>
@@ -43,10 +43,11 @@
   import { BasicTable, TableAction, useTable } from '@/components/Table';
   import * as adminApi from '@/api/admin/index.ts';
   import { columns, searchFormSchema } from './pageConfig.data';
-  import { columns as userListColumns } from '../../member/list/pageConfig.data';
   import EditFormModal from './EditFormModal.vue';
   import { BasicModal, useModal } from '@/components/Modal';
   import { useMessage } from '@/hooks/web/useMessage';
+  import MemberList from '@/components/BusinessComponents/MemberList/index.vue';
+  import { ref } from 'vue';
 
   const [registerTable, { reload }] = useTable({
     title: '用户列表',
@@ -108,24 +109,10 @@
     reload();
   }
 
-  let currentLevelId = null;
+  const currentLevelId = ref(null);
   function openUserListWindow(data) {
     openUserListModal();
-    setTimeout(() => {
-      currentLevelId = data?.id;
-      reloadUserList();
-    }, 100);
+    currentLevelId.value = data?.id;
   }
   const [registerUserListModal, { openModal: openUserListModal }] = useModal();
-  const [registerUserListTable, { reload: reloadUserList }] = useTable({
-    title: '用户列表',
-    api: (params) =>
-      adminApi.getUserList({
-        levelId: currentLevelId,
-        ...params,
-      }),
-    immediate: false,
-    rowKey: 'id',
-    columns: userListColumns,
-  });
 </script>

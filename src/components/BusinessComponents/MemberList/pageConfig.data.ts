@@ -3,7 +3,6 @@ import { BasicColumn, FormSchema } from '@/components/Table';
 
 // 通过上面实体配置生成以下页面配置：
 export const columns: BasicColumn[] = [
-  { dataIndex: 'id', title: 'ID', width: 80, align: 'left' },
   { dataIndex: 'walletAddress', title: '币安钱包地址' },
   { dataIndex: 'username', title: '名称' },
   { dataIndex: 'nickname', title: '用户昵称' },

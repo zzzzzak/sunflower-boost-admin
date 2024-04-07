@@ -12,6 +12,8 @@ enum Api {
   AdminUserDelete = '/admin/admin-user/delete',
 
   GetUserList = '/admin/getUserList',
+  GetFansByLevel = '/admin/getFansByLevel',
+  GetFansTreeByLevel = '/admin/getFansTreeByLevel',
 
   GetMenuList = '/admin/menu/getMenuList',
 
@@ -85,6 +87,13 @@ export function getAdminAnalysis(data) {
 
 export const getUserList = (params) => {
   return defHttp.get({ url: Api.GetUserList, params }, { isTransformResponse: false });
+};
+
+export const getFansByLevel = (params) => {
+  return defHttp.get({ url: Api.GetFansByLevel, params }, { isTransformResponse: false });
+};
+export const getFansTreeByLevel = (params) => {
+  return defHttp.get({ url: Api.GetFansTreeByLevel, params });
 };
 
 export const levelListPage = (params) => {

@@ -9,7 +9,8 @@
           </template>
 
           <div class="py-4 px-4 flex justify-between items-center">
-            <CountTo :startVal="1" :endVal="Number(item.value)" class="text-2xl" />
+            <!-- <CountTo :startVal="1" :endVal="Number(item.value)" class="text-2xl" /> -->
+            <div class="text-2xl">{{ item.value }}</div>
             <!-- <Icon :icon="item.icon" :size="40" /> -->
           </div>
         </Card>
@@ -23,7 +24,7 @@
   import { onMounted, ref } from 'vue';
   import { getAdminAnalysis } from '@/api/admin/index';
   import { GrowCardItem } from '../data';
-  import { BasicForm, useForm } from '@/components/Form';
+  import { useForm } from '@/components/Form';
 
   defineProps({
     loading: {
@@ -92,7 +93,14 @@
         color: 'orange',
         action: 'DOGE',
       },
-
+      {
+        title: '总实际提现',
+        icon: 'download-count|svg',
+        value: res.realAmount,
+        total: res.realAmount,
+        color: 'orange',
+        action: 'DOGE',
+      },
       {
         title: '总慈善',
         icon: 'download-count|svg',

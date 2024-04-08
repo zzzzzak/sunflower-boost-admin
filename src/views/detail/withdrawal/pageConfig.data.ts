@@ -1,6 +1,4 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
-import { Tinymce } from '@/components/Tinymce';
-import { h } from 'vue';
 
 const statusOptions = [
   { label: '待审批', value: 'PENDING', color: 'gray' },
@@ -10,9 +8,10 @@ const statusOptions = [
 ];
 
 const auditOptions = [
-  { label: '待审批', value: 'PENDING', color: 'gray' },
+  { label: '待审批', value: 'PENDING', color: 'yellow' },
   { label: '审批通过', value: 'APPROVED', color: 'green' },
   { label: '审批拒绝', value: 'REJECT', color: 'red' },
+  { label: '审批退回', value: 'RETURN', color: 'gray' },
 ];
 // 通过上面实体配置生成以下页面配置：
 export const columns: BasicColumn[] = [

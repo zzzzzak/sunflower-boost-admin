@@ -20,6 +20,16 @@
                 ifShow: () => record.audit === 'PENDING',
               },
               {
+                icon: 'clarity:refresh-line',
+                label: '重新打款',
+                onClick: handleReTransfer.bind(null, record.id),
+              },
+              {
+                icon: 'clarity:backup-restore-line',
+                label: '退回订单',
+                onClick: handleRefaush.bind(null, record.id),
+              },
+              {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
                 label: '删除此数据',
@@ -86,6 +96,16 @@
   }
   const { createMessage } = useMessage();
   const { success } = createMessage;
+
+  async function handleReTransfer(id) {
+    await adminApi.withdrawalReTransfer({ id });
+    success('更新成功');
+  }
+
+  async function handleRefaush(id) {
+    await adminApi.withdrawalRefaush({ id });
+    success('更新成功');
+  }
 
   function handleEdit(record: Recordable) {
     openModal(true, {

@@ -10,11 +10,16 @@ export const columns: BasicColumn[] = [
     valueEnum: [
       { label: '订单', value: 'Order', color: 'orange' },
       { label: '提现', value: 'Withdrawal', color: 'yellow' },
+      { label: '没收', value: 'Forfeited', color: 'yellow' },
     ],
   },
   {
     title: '慈善金金额',
     dataIndex: 'amount',
+  },
+  {
+    title: '用户 ID',
+    dataIndex: 'userId',
   },
   {
     title: '订单ID',

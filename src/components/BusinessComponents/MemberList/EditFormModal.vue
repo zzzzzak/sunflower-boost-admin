@@ -9,7 +9,7 @@
   import { ref, computed, unref } from 'vue';
   import { BasicModal, useModalInner } from '@/components/Modal';
   import { BasicForm, useForm } from '@/components/Form';
-  import { formSchema } from './pageConfig.data';
+  import { formSchema, forfeitedBalanceFormSchema } from './pageConfig.data';
 
   defineOptions({ name: 'AgentModal' });
   const props = defineProps({
@@ -40,18 +40,25 @@
     setModalProps({ confirmLoading: false });
     editType.value = data?.editType;
 
-    setFieldsValue({
-      ...data.record,
-    });
     if (unref(editType) === 0) {
       resetSchema(formSchema);
     } else if (unref(editType) === 1) {
+      setFieldsValue({
+        ...data.record,
+      });
+      resetSchema(formSchema);
       rowId.value = data.record.id;
-      // resetSchema(audioSchema);
+    } else if (unref(editType) === 2) {
+      setTimeout(() => {
+        setFieldsValue({
+          amount: data.record.availableWithdrawalAmount,
+        });
+      });
+      resetSchema(forfeitedBalanceFormSchema);
     }
   });
 
-  const getTitle = computed(() => (!unref(editType) ? '新增' : '编辑'));
+  const getTitle = computed(() => ['新增', '编辑', '没收'][unref(editType)]);
 
   async function handleSubmit() {
     try {
@@ -65,6 +72,8 @@
       };
       if (unref(editType) === 0) {
       } else if (unref(editType) === 1) {
+        params.values.id = rowId.value;
+      } else if (unref(editType) === 2) {
         params.values.id = rowId.value;
       }
 

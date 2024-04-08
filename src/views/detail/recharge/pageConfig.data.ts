@@ -1,6 +1,4 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
-import { Tinymce } from '@/components/Tinymce';
-import { h } from 'vue';
 
 /**
  * 

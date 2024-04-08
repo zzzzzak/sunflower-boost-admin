@@ -4,6 +4,7 @@ import { defHttp } from '@/utils/http/axios';
 enum Api {
   Logout = '/admin/admin-user/logout',
   Login = '/admin/admin-user/login',
+  GoogleQrcode = '/auth/googleQrcode',
   GetUserInfo = '/admin/admin-user/getUserInfo',
   AdminUserCreate = '/admin/admin-user/create',
   AdminUserList = '/admin/admin-user/listpage',
@@ -17,6 +18,7 @@ enum Api {
   userCreate = '/admin/user/create',
   userUpdate = '/admin/user/update',
   userDelete = '/admin/user/delete',
+  userForfeitedBalance = '/admin/user/forfeitedBalance',
 
   GetMenuList = '/admin/menu/getMenuList',
 
@@ -41,6 +43,8 @@ enum Api {
   WithdrawalDetail = '/admin/detail/withdrawal/detail',
   WithdrawalUpdate = '/admin/detail/withdrawal/update',
   WithdrawalDelete = '/admin/detail/withdrawal/delete',
+  WithdrawalReTransfer = '/admin/detail/withdrawal/retransfer',
+  WithdrawalRefaush = '/admin/detail/withdrawal/refaush',
 
   // 充值订单
   orderListpage = '/admin/detail/order/listpage',
@@ -70,6 +74,10 @@ enum Api {
 
 export function loginApi(params, mode: ErrorMessageMode = 'modal') {
   return defHttp.post({ url: Api.Login, params }, { errorMessageMode: mode });
+}
+
+export function googleQrcode(params) {
+  return defHttp.get({ url: Api.GoogleQrcode, params });
 }
 
 export function doLogout() {
@@ -181,6 +189,12 @@ export const withdrawalUpdate = (params) => {
 };
 export const withdrawalDelete = (params) => {
   return defHttp.post({ url: Api.WithdrawalDelete, params });
+};
+export const withdrawalReTransfer = (params) => {
+  return defHttp.post({ url: Api.WithdrawalReTransfer, params });
+};
+export const withdrawalRefaush = (params) => {
+  return defHttp.post({ url: Api.WithdrawalRefaush, params });
 };
 
 export const orderListPage = (params?: any) => {

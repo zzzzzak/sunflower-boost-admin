@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button @click="handleCreate">新增种子用户</a-button>
+        <a-button type="primary" @click="handleCreate">新增种子用户</a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -17,6 +17,11 @@
                 icon: 'clarity:note-edit-line',
                 label: '修改信息',
                 onClick: handleEdit.bind(null, record),
+              },
+              {
+                icon: 'clarity:ban-line',
+                label: '没收金额',
+                onClick: handleForfeitedBalance.bind(null, record),
               },
               {
                 icon: 'clarity:trash-line',
@@ -155,6 +160,14 @@
       editType: 0,
     });
   }
+
+  function handleForfeitedBalance(record: Recordable) {
+    openModal(true, {
+      record,
+      editType: 2,
+    });
+  }
+
   const { createMessage } = useMessage();
   const { success } = createMessage;
 

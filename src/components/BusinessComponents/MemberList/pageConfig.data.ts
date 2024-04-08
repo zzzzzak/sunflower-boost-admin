@@ -1,5 +1,7 @@
 import { levelList, getUserList } from '@/api/admin';
 import { BasicColumn, FormSchema } from '@/components/Table';
+import * as adminApi from '@/api/admin/index.ts';
+import { uploadApi } from '@/api/sys/upload';
 
 // 通过上面实体配置生成以下页面配置：
 export const columns: BasicColumn[] = [
@@ -32,6 +34,49 @@ export const columns: BasicColumn[] = [
   },
   { dataIndex: 'createdAt', title: '创建时间' },
   { dataIndex: 'updatedAt', title: '更新时间' },
+];
+
+export const formSchema: FormSchema[] = [
+  { required: true, field: 'walletAddress', label: '币安钱包地址', component: 'Input' },
+  { required: true, field: 'username', label: '用户名称', component: 'Input' },
+  { required: true, field: 'nickname', label: '用户昵称', component: 'Input' },
+  { required: true, field: 'introduction', label: '用户简介', component: 'Input' },
+  {
+    required: true,
+    field: 'avatar',
+    label: '用户头像',
+    component: 'ImageUpload',
+    componentProps: {
+      api: uploadApi,
+      accept: ['gif', 'png', 'jpeg', 'jpg'],
+      maxSize: 2,
+      maxNumber: 1,
+    },
+  },
+  { required: true, field: 'inviteCode', label: '邀请码', component: 'Input' },
+  {
+    field: 'inviterId',
+    label: '邀请人Id',
+    component: 'ApiSelect',
+    componentProps: {
+      api: () =>
+        adminApi
+          .getUserList({
+            currPage: 1,
+            pageSize: 10000,
+          })
+          .then((res) => res.data),
+      labelField: 'nickname',
+      valueField: 'id',
+    },
+  },
+  {
+    required: false,
+    field: 'levelId',
+    label: '等级',
+    component: 'ApiSelect',
+    componentProps: { api: adminApi.levelList, labelField: 'name', valueField: 'id' },
+  },
 ];
 
 export const searchFormSchema: FormSchema[] = [

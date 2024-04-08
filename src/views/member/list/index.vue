@@ -1,5 +1,7 @@
 <template>
-  <MemberList />
+  <div>
+    <MemberList />
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -1,6 +1,9 @@
 <template>
   <div>
     <BasicTable @register="registerTable">
+      <template #toolbar>
+        <a-button @click="handleCreate">新增种子用户</a-button>
+      </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
           <TableAction
@@ -9,6 +12,21 @@
                 icon: 'clarity:user-line',
                 label: '团队成员',
                 onClick: openUserListWindow.bind(null, record),
+              },
+              {
+                icon: 'clarity:note-edit-line',
+                label: '修改信息',
+                onClick: handleEdit.bind(null, record),
+              },
+              {
+                icon: 'clarity:trash-line',
+                label: '删除用户',
+                type: 'primary',
+                popConfirm: {
+                  title: '是否确认删除',
+                  placement: 'left',
+                  confirm: handleDelete.bind(null, record),
+                },
               },
             ]"
           />
@@ -30,15 +48,18 @@
         </Tabs.TabPane>
       </Tabs>
     </BasicModal>
+    <EditFormModal @register="registerModal" width="1200px" :onSubmit="handleSubmit" />
   </div>
 </template>
 <script lang="ts" setup>
+  import EditFormModal from './EditFormModal.vue';
   import { BasicTable, TableAction, useTable } from '@/components/Table';
   import * as adminApi from '@/api/admin/index.ts';
   import { columns, searchFormSchema } from './pageConfig.data';
   import { ref } from 'vue';
   import { BasicModal, useModal } from '@/components/Modal';
   import { Tabs } from 'ant-design-vue';
+  import { useMessage } from '@/hooks/web/useMessage';
 
   const props = defineProps({
     searchParams: {
@@ -59,7 +80,7 @@
     },
   });
 
-  const [registerTable] = useTable({
+  const [registerTable, { reload }] = useTable({
     title: '用户列表',
     canResize: false,
     isTreeTable: true,
@@ -126,6 +147,39 @@
       ...columns,
     ],
   });
+
+  const [registerModal, { openModal }] = useModal();
+
+  function handleCreate() {
+    openModal(true, {
+      editType: 0,
+    });
+  }
+  const { createMessage } = useMessage();
+  const { success } = createMessage;
+
+  function handleEdit(record: Recordable) {
+    openModal(true, {
+      record,
+      editType: 1,
+    });
+  }
+  async function handleSubmit({ editType, values }) {
+    if (editType) {
+      await adminApi.userUpdate(values);
+      success('更新成功');
+    } else {
+      await adminApi.userCreate(values);
+      success('创建成功');
+    }
+    reload();
+    return true;
+  }
+  async function handleDelete(record: Recordable) {
+    await adminApi.userDelete(record);
+    success('删除成功');
+    reload();
+  }
 
   const currentWithdrawalId = ref(null);
   function openUserListWindow(data) {

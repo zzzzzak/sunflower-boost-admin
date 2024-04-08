@@ -14,6 +14,9 @@ enum Api {
   GetUserList = '/admin/getUserList',
   GetFansByLevel = '/admin/getFansByLevel',
   GetFansTreeByLevel = '/admin/getFansTreeByLevel',
+  userCreate = '/admin/user/create',
+  userUpdate = '/admin/user/update',
+  userDelete = '/admin/user/delete',
 
   GetMenuList = '/admin/menu/getMenuList',
 
@@ -99,6 +102,15 @@ export const getFansByLevel = (params) => {
 };
 export const getFansTreeByLevel = (params) => {
   return defHttp.get({ url: Api.GetFansTreeByLevel, params });
+};
+export const userCreate = (params) => {
+  return defHttp.post({ url: Api.userCreate, params });
+};
+export const userUpdate = (params) => {
+  return defHttp.post({ url: Api.userUpdate, params });
+};
+export const userDelete = (params) => {
+  return defHttp.post({ url: Api.userDelete, params });
 };
 
 export const levelListPage = (params) => {

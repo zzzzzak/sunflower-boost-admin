@@ -1,16 +1,14 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
-import { Tinymce } from '@/components/Tinymce';
-import { h } from 'vue';
 
 // 通过上面实体配置生成以下页面配置：
 export const columns: BasicColumn[] = [
   {
-    title: 'source',
-    dataIndex: 'status',
+    title: '来源',
+    dataIndex: 'source',
     valueEnum: [
       { label: '订单', value: 'Order', color: 'orange' },
       { label: '提现', value: 'Withdrawal', color: 'yellow' },
-      { label: '没收', value: 'Forfeited', color: 'yellow' },
+      { label: '没收', value: 'Forfeited', color: 'gray' },
     ],
   },
   {
@@ -35,19 +33,20 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '慈善金更新时间',
-    dataIndex: 'updateAt',
+    dataIndex: 'updatedAt',
   },
 ];
 export const formSchema: FormSchema[] = [];
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'status',
+    field: 'source',
     label: '来源',
     component: 'Select',
     componentProps: {
       options: [
-        { label: '订单', value: 'Order', color: 'orange' },
-        { label: '提现', value: 'Withdrawal', color: 'yellow' },
+        { label: '订单', value: 'Order' },
+        { label: '提现', value: 'Withdrawal' },
+        { label: '没收', value: 'Forfeited' },
       ],
     },
   },

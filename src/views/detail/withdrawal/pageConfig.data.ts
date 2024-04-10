@@ -36,6 +36,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'walletAddress',
   },
   {
+    title: '提现矿工费BNB交易hash',
+    dataIndex: 'minersFeeTransactionHash',
+  },
+  {
     title: '提现转账交易ID',
     dataIndex: 'transactionHash',
   },

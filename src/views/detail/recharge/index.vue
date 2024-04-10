@@ -28,6 +28,7 @@
                   placement: 'left',
                   confirm: handleDelete.bind(null, record),
                 },
+                ifShow: () => record.binancePaymentStatus !== 'SUCCESS',
               },
             ]"
           />

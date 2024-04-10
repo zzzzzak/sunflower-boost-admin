@@ -5,7 +5,7 @@ export const columns: BasicColumn[] = [
   { dataIndex: 'id', title: 'ID' },
   { dataIndex: 'username', title: '用户名' },
   { dataIndex: 'createdAt', title: '创建时间' },
-  { dataIndex: 'updateAt', title: '更新时间' },
+  { dataIndex: 'updatedAt', title: '更新时间' },
 ];
 
 export const formSchema: FormSchema[] = [

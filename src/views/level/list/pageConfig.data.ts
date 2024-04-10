@@ -18,7 +18,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '隐藏购买',
-    dataIndex: 'show',
+    dataIndex: 'hidePurchaseEntry',
     valueEnum: [
       {
         label: '隐藏',
@@ -75,7 +75,7 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'show',
+    field: 'hidePurchaseEntry',
     label: '隐藏购买',
     component: 'Switch',
     required: true,

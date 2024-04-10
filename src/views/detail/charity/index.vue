@@ -15,7 +15,7 @@
         params.toTime = toTime[0];
         params.formTime = toTime[1];
       }
-      return adminApi.charityListPage(params);
+      return adminApi.charityListpage(params);
     },
 
     useSearchForm: true,

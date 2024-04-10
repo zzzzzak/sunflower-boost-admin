@@ -23,11 +23,13 @@
                 icon: 'clarity:refresh-line',
                 label: '重新打款',
                 onClick: handleReTransfer.bind(null, record.id),
+                ifShow: () => record.status === 'FAILED',
               },
               {
                 icon: 'clarity:backup-restore-line',
                 label: '退回订单',
                 onClick: handleRefaush.bind(null, record.id),
+                ifShow: () => record.status === 'FAILED',
               },
               {
                 icon: 'ant-design:delete-outlined',
@@ -38,6 +40,7 @@
                   placement: 'left',
                   confirm: handleDelete.bind(null, record),
                 },
+                ifShow: () => record.status === 'PENDING',
               },
             ]"
           />

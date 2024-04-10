@@ -1,6 +1,4 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
-import { Tinymce } from '@/components/Tinymce';
-import { h } from 'vue';
 
 const commissionTypeOptions = [
   { label: '推荐佣金', value: 'INDIRECT' },
@@ -17,6 +15,25 @@ export const columns: BasicColumn[] = [
   {
     title: '订单 ID',
     dataIndex: 'orderId',
+    customRender({ record }) {
+      return record.orderId || record.orderIds;
+    },
+  },
+  {
+    title: '大区资金冻结',
+    dataIndex: 'maxChainFreeze',
+    valueEnum: [
+      {
+        label: '已发放',
+        value: 0,
+        color: 'green',
+      },
+      {
+        label: '已冻结',
+        value: 1,
+        color: 'red',
+      },
+    ],
   },
   {
     title: '佣金金额',
@@ -41,7 +58,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '佣金更新时间',
-    dataIndex: 'updateAt',
+    dataIndex: 'updatedAt',
   },
 ];
 export const formSchema: FormSchema[] = [];
@@ -62,6 +79,23 @@ export const searchFormSchema: FormSchema[] = [
     component: 'Select',
     componentProps: {
       options: commissionTypeOptions,
+    },
+  },
+  {
+    field: 'maxChainFreeze',
+    label: '大区资金冻结',
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: '已发放',
+          value: 0,
+        },
+        {
+          label: '已冻结',
+          value: 1,
+        },
+      ],
     },
   },
   {

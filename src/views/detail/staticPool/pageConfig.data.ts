@@ -69,7 +69,7 @@ export class StaticPool {
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
   })
-  updateAt: Date;
+  updatedAt: Date;
 }
  */
 
@@ -101,7 +101,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '静态池更新时间',
-    dataIndex: 'updateAt',
+    dataIndex: 'updatedAt',
   },
 ];
 export const formSchema: FormSchema[] = [];

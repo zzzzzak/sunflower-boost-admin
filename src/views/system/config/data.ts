@@ -83,6 +83,15 @@ export const baseSetschemas: FormSchema[] = [
     },
   },
   { label: '最小提现额度', field: 'minWithdrawalAmount', component: 'InputNumber' },
+  {
+    label: '提现手续费BNB(0为不收取)',
+    field: 'withdrawalFee',
+    component: 'InputNumber',
+    componentProps: {
+      step: 0.001,
+      min: 0,
+    },
+  },
 
   {
     label: '提现审批',

@@ -49,8 +49,12 @@
       resetSchema(formSchema);
       rowId.value = data.record.id;
     } else if (unref(editType) === 2) {
+      rowId.value = data.record.id;
       setTimeout(() => {
         setFieldsValue({
+          charityAmount: data.record.charityAmount,
+          _charityAmount: data.record.charityAmount,
+          availableWithdrawalAmount: data.record.availableWithdrawalAmount,
           amount: data.record.availableWithdrawalAmount,
         });
       });

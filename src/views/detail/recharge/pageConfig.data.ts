@@ -18,11 +18,33 @@ const binancePaymentStatusOptions = [
   },
 ];
 
+const completionOfProfitSharingConfig = [
+  {
+    label: '未完成',
+    value: 0,
+    color: 'red',
+  },
+  {
+    label: '已完成',
+    value: 1,
+    color: 'green',
+  },
+];
+
 // 通过上面实体配置生成以下页面配置：
 export const columns: BasicColumn[] = [
   {
+    title: '订单ID',
+    dataIndex: 'id',
+  },
+  {
     title: '用户ID',
     dataIndex: 'userId',
+  },
+  {
+    title: '是否完成分润',
+    dataIndex: 'completionOfProfitSharing',
+    valueEnum: completionOfProfitSharingConfig,
   },
   {
     title: '订单金额',

@@ -50,6 +50,7 @@ enum Api {
   orderListpage = '/admin/detail/order/listpage',
   orderDetail = '/admin/detail/order/detail',
   orderDelete = '/admin/detail/order/delete',
+  orderReProfitSharing = '/admin/detail/order/reProfitSharing',
 
   // 分润订单
   profitListpage = '/admin/detail/commission/listpage',
@@ -119,6 +120,9 @@ export const userUpdate = (params) => {
 };
 export const userDelete = (params) => {
   return defHttp.post({ url: Api.userDelete, params });
+};
+export const userForfeitedBalance = (params) => {
+  return defHttp.post({ url: Api.userForfeitedBalance, params });
 };
 
 export const levelListPage = (params) => {
@@ -205,6 +209,9 @@ export const orderDetail = (params) => {
 };
 export const orderDelete = (params) => {
   return defHttp.post({ url: Api.orderDelete, params });
+};
+export const orderReProfitSharing = (params) => {
+  return defHttp.post({ url: Api.orderReProfitSharing, params });
 };
 
 export const profitListPage = (params?: any) => {

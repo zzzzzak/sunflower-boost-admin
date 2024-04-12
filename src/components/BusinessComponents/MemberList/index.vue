@@ -178,12 +178,16 @@
     });
   }
   async function handleSubmit({ editType, values }) {
-    if (editType) {
-      await adminApi.userUpdate(values);
-      success('更新成功');
-    } else {
+    if (editType === 0) {
       await adminApi.userCreate(values);
       success('创建成功');
+    } else if (editType === 1) {
+      await adminApi.userUpdate(values);
+      success('更新成功');
+    } else if (editType === 2) {
+      const { _charityAmount, availableWithdrawalAmount, ...data } = values;
+      await adminApi.userForfeitedBalance(data);
+      success('没收成功');
     }
     reload();
     return true;

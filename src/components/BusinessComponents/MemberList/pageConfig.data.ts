@@ -144,6 +144,18 @@ export const forfeitedBalanceFormSchema: FormSchema[] = [
       };
     },
   },
+  {
+    field: 'charityAmount',
+    label: '没收慈善值',
+    component: 'InputNumber',
+    required: true,
+    componentProps({ formModel }) {
+      return {
+        max: formModel._charityAmount,
+        min: 0,
+      };
+    },
+  },
 ];
 
 export const searchFormSchema: FormSchema[] = [

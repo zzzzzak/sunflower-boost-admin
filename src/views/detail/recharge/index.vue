@@ -13,6 +13,11 @@
                 label: '用户信息',
                 onClick: openUserListWindow.bind(null, record),
               },
+              {
+                icon: 'clarity:employee-group-solid',
+                label: '重新分润',
+                onClick: handleReShare.bind(null, record),
+              },
               // {
               //   icon: 'clarity:archive-solid',
               //   label: '分润订单',
@@ -130,4 +135,12 @@
     rowKey: 'id',
     columns: userListColumns,
   });
+
+  async function handleReShare(record) {
+    await adminApi.orderReProfitSharing({
+      id: record.id,
+    });
+    success('提交成功');
+    reload();
+  }
 </script>

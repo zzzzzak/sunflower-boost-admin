@@ -38,6 +38,14 @@ enum Api {
   InviterProfitRuleUpdate = '/admin/inviterProfitRule/update',
   InviterProfitRuleDelete = '/admin/inviterProfitRule/delete',
 
+  // 代理等级规则
+  NoticeListpage = '/admin/notice/listpage',
+  NoticeCreate = '/admin/notice/create',
+  NoticeList = '/admin/notice/list',
+  NoticeDetail = '/admin/notice/detail',
+  NoticeUpdate = '/admin/notice/update',
+  NoticeDelete = '/admin/notice/delete',
+
   // 提现
   WithdrawalListpage = '/admin/detail/withdrawal/listpage',
   WithdrawalDetail = '/admin/detail/withdrawal/detail',
@@ -164,6 +172,25 @@ export const inviterProfitRuleUpdate = (params) => {
 };
 export const inviterProfitRuleDelete = (params) => {
   return defHttp.post({ url: Api.InviterProfitRuleDelete, params });
+};
+
+export const noticeListPage = (params) => {
+  return defHttp.get({ url: Api.NoticeListpage, params }, { isTransformResponse: false });
+};
+export const noticeCreate = (params) => {
+  return defHttp.post({ url: Api.NoticeCreate, params });
+};
+export const noticeList = (params?: any) => {
+  return defHttp.get({ url: Api.NoticeList, params });
+};
+export const noticeDetail = (params) => {
+  return defHttp.get({ url: Api.NoticeDetail, params });
+};
+export const noticeUpdate = (params) => {
+  return defHttp.post({ url: Api.NoticeUpdate, params });
+};
+export const noticeDelete = (params) => {
+  return defHttp.post({ url: Api.NoticeDelete, params });
 };
 
 export const adminUserCreate = (params) => {

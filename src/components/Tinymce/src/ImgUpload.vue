@@ -7,7 +7,7 @@
         Authorization: `Bearer ${getToken()}`,
       }"
       @change="handleChange"
-      :action="`${uploadUrl}/admin/v1/UploadFile`"
+      :action="`${uploadUrl}/upload`"
       :showUploadList="false"
       accept=".jpg,.jpeg,.gif,.png,.webp"
     >
@@ -57,7 +57,7 @@
     const file = info.file;
     console.log(file?.response);
     const status = file?.status;
-    const url = file?.response?.data?.path;
+    const url = file?.response?.data?.filePath;
     const name = file?.name;
 
     if (status === 'uploading') {

@@ -121,7 +121,6 @@ export const formSchema: FormSchema[] = [
   {
     field: 'openSizeArea',
     label: '开启大小区',
-    required: true,
     component: 'Switch',
     componentProps: {
       checkedChildren: '开启',
@@ -133,7 +132,6 @@ export const formSchema: FormSchema[] = [
   {
     field: 'status',
     label: '生效状态',
-    required: true,
     component: 'Switch',
     componentProps: {
       checkedChildren: '开启',

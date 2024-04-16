@@ -78,19 +78,12 @@ export const formSchema: FormSchema[] = [
     field: 'hidePurchaseEntry',
     label: '隐藏购买',
     component: 'Switch',
-    required: true,
     componentProps: {
       checkedChildren: '展示',
       unCheckedChildren: '隐藏',
       checkedValue: 0,
       unCheckedValue: 1,
     },
-  },
-  {
-    field: 'purchaseAmount',
-    label: '等级购买金额',
-    component: 'InputNumber',
-    required: true,
   },
   {
     field: 'sort',

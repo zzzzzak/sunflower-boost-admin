@@ -161,11 +161,23 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: true,
   },
+  // {
+  //   field: 'cover',
+  //   label: '封面图',
+  //   component: 'Input',
+  //   required: true,
+  // },
   {
-    field: 'cover',
-    label: '封面图',
-    component: 'Input',
-    required: true,
+    field: 'status',
+    label: '状态',
+    component: 'Switch',
+    defaultValue: 1,
+    componentProps: {
+      checkedChildren: '启用',
+      unCheckedChildren: '禁用',
+      checkedValue: 1,
+      unCheckedValue: 0,
+    },
   },
   {
     field: 'content',
@@ -180,18 +192,7 @@ export const formSchema: FormSchema[] = [
     },
     required: true,
   },
-  {
-    field: 'status',
-    label: '状态',
-    component: 'Switch',
-    defaultValue: 1,
-    componentProps: {
-      checkedChildren: '启用',
-      unCheckedChildren: '禁用',
-      checkedValue: 1,
-      unCheckedValue: 0,
-    },
-  },
+
   // {
   //   field: 'language',
   //   label: '语言',

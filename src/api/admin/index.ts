@@ -5,6 +5,7 @@ enum Api {
   Logout = '/admin/admin-user/logout',
   Login = '/admin/admin-user/login',
   GoogleQrcode = '/auth/googleQrcode',
+  GetUploadPath = '/upload/getUploadPath',
   GetUserInfo = '/admin/admin-user/getUserInfo',
   AdminUserCreate = '/admin/admin-user/create',
   AdminUserList = '/admin/admin-user/listpage',
@@ -87,6 +88,10 @@ export function loginApi(params, mode: ErrorMessageMode = 'modal') {
 
 export function googleQrcode(params) {
   return defHttp.get({ url: Api.GoogleQrcode, params });
+}
+
+export function GetUploadPath(data) {
+  return defHttp.post({ url: Api.GetUploadPath, data });
 }
 
 export function doLogout() {

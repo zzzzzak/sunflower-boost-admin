@@ -33,7 +33,7 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, TableAction, useTable } from '@/components/Table';
-  import * as adminApi from '@/api/admin/index.ts';
+  import * as adminApi from '@/api/admin/index';
   import { columns, searchFormSchema } from './pageConfig.data';
   import EditFormModal from './EditFormModal.vue';
   import { BasicModal, useModal } from '@/components/Modal';

@@ -10,7 +10,7 @@
             :dropDownActions="[
               {
                 icon: 'clarity:note-edit-line',
-                label: '编辑代理规则',
+                label: '编辑公告',
                 onClick: handleEdit.bind(null, record),
               },
               {
@@ -46,7 +46,7 @@
         params.toTime = toTime[0];
         params.formTime = toTime[1];
       }
-      return adminApi.inviterProfitRuleListPage(params);
+      return adminApi.noticeListPage(params);
     },
 
     useSearchForm: true,
@@ -84,17 +84,17 @@
   }
   async function handleSubmit({ editType, values }) {
     if (editType) {
-      await adminApi.inviterProfitRuleUpdate(values);
+      await adminApi.noticeUpdate(values);
       success('更新成功');
     } else {
-      await adminApi.inviterProfitRuleCreate(values);
+      await adminApi.noticeCreate(values);
       success('创建成功');
     }
     reload();
     return true;
   }
   async function handleDelete(record: Recordable) {
-    await adminApi.inviterProfitRuleDelete(record);
+    await adminApi.noticeDelete(record);
     success('删除成功');
     reload();
   }

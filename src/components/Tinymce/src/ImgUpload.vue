@@ -6,8 +6,9 @@
       :headers="{
         Authorization: `Bearer ${getToken()}`,
       }"
+      :customRequest="onCustomRequest"
       @change="handleChange"
-      :action="`${uploadUrl}/admin/v1/UploadFile`"
+      action="/"
       :showUploadList="false"
       accept=".jpg,.jpeg,.gif,.png,.webp"
     >
@@ -22,9 +23,11 @@
 
   import { Upload } from 'ant-design-vue';
   import { useDesign } from '@/hooks/web/useDesign';
-  import { useGlobSetting } from '@/hooks/setting';
   import { useI18n } from '@/hooks/web/useI18n';
   import { getToken } from '@/utils/auth';
+  import { GetUploadPath } from '@/api/admin';
+  import axios from 'axios';
+  import { useMessage } from '@/hooks/web/useMessage';
 
   defineOptions({ name: 'TinymceImageUpload' });
 
@@ -42,7 +45,6 @@
 
   let uploading = false;
 
-  const { uploadUrl } = useGlobSetting();
   const { t } = useI18n();
   const { prefixCls } = useDesign('tinymce-img-upload');
 
@@ -53,11 +55,39 @@
     };
   });
 
+  const { createMessage } = useMessage();
+  async function onCustomRequest({ file, onSuccess, onError }): any {
+    try {
+      const { uploadURL } = await GetUploadPath({
+        filename: file.name,
+      });
+      const formData = new FormData();
+      formData.append('file', file);
+      const {
+        data: {
+          result: {
+            variants: [imageUrl],
+          },
+        },
+      } = await axios({
+        url: uploadURL,
+        method: 'POST',
+        data: formData,
+      });
+      onSuccess(imageUrl, file);
+      return true;
+    } catch (error) {
+      createMessage.error('上传失败');
+      console.log(error);
+      onError(error);
+      return false;
+    }
+  }
+
   function handleChange(info: Record<string, any>) {
     const file = info.file;
-    console.log(file?.response);
     const status = file?.status;
-    const url = file?.response?.data?.path;
+    const url = file?.response;
     const name = file?.name;
 
     if (status === 'uploading') {

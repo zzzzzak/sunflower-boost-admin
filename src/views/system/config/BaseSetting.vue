@@ -45,8 +45,8 @@
   });
 
   onMounted(async () => {
-    const data = await systemConfigDetail();
-    setFieldsValue(data);
+    const { secretKey, bscAddress, ...data } = await systemConfigDetail();
+    setFieldsValue({ _secretKey: secretKey, _bscAddress: bscAddress, ...data });
   });
 
   const avatar = computed(() => {

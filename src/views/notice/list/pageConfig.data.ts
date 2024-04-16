@@ -83,6 +83,22 @@ export const columns: BasicColumn[] = [
   //   },
   // },
   {
+    title: '类型',
+    dataIndex: 'type',
+    valueEnum: [
+      {
+        label: '视频',
+        value: 1,
+        color: 'yellow',
+      },
+      {
+        label: '公告',
+        value: 0,
+        color: 'orange',
+      },
+    ],
+  },
+  {
     title: '状态',
     dataIndex: 'status',
     valueEnum: [
@@ -118,6 +134,23 @@ export const searchFormSchema: FormSchema[] = [
   //   label: '标题',
   //   component: 'Input',
   // },
+  {
+    field: 'type',
+    label: '类型',
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: '视频',
+          value: 1,
+        },
+        {
+          label: '公告',
+          value: 0,
+        },
+      ],
+    },
+  },
   {
     field: 'status',
     label: '状态',
@@ -167,6 +200,23 @@ export const formSchema: FormSchema[] = [
   //   component: 'Input',
   //   required: true,
   // },
+  {
+    field: 'type',
+    label: '类型',
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: '视频',
+          value: 1,
+        },
+        {
+          label: '公告',
+          value: 0,
+        },
+      ],
+    },
+  },
   {
     field: 'status',
     label: '状态',

@@ -1,5 +1,6 @@
 import { uploadApi } from '@/api/sys/upload';
 import { FormSchema } from '@/components/Form';
+import { useUserStore } from '@/store/modules/user';
 
 export interface ListItem {
   key: string;
@@ -103,6 +104,56 @@ export const baseSetschemas: FormSchema[] = [
       unCheckedChildren: '关',
       checkedValue: 1,
       unCheckedValue: 0,
+    },
+  },
+
+  {
+    label: '币安付款钱包私钥',
+    field: 'secretKey',
+    component: 'Input',
+    required: false,
+    ifShow() {
+      const userStore = useUserStore();
+      return !!userStore.userInfo.writeBscPrivateKey;
+    },
+    componentProps({ formModel }) {
+      return {
+        placeholder: formModel._secretKey,
+      };
+    },
+  },
+  {
+    label: '币安钱包私钥',
+    field: '_secretKey',
+    component: 'Input',
+    required: false,
+    ifShow() {
+      return false;
+    },
+  },
+
+  {
+    label: '币安收款地址',
+    field: 'bscAddress',
+    component: 'Input',
+    required: false,
+    ifShow() {
+      const userStore = useUserStore();
+      return !!userStore.userInfo.writeBscPrivateKey;
+    },
+    componentProps({ formModel }) {
+      return {
+        placeholder: formModel._bscAddress,
+      };
+    },
+  },
+  {
+    label: '币安收款地址',
+    field: '_bscAddress',
+    component: 'Input',
+    required: false,
+    ifShow() {
+      return false;
     },
   },
 ];

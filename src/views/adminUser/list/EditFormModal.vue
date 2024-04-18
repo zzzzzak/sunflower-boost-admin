@@ -63,10 +63,17 @@
       ...data.record,
     });
     if (unref(editType) === 0) {
-      resetSchema(formSchema);
+      resetSchema(
+        formSchema.map((item) => {
+          return {
+            required: true,
+            ...item,
+          };
+        }),
+      );
     } else if (unref(editType) === 1) {
       rowId.value = data.record.id;
-      // resetSchema(audioSchema);
+      resetSchema(formSchema);
     }
   });
 

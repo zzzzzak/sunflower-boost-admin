@@ -10,7 +10,7 @@
             :dropDownActions="[
               {
                 icon: 'clarity:note-edit-line',
-                label: '编辑公告',
+                label: '编辑慈善等级',
                 onClick: handleEdit.bind(null, record),
               },
               {
@@ -40,13 +40,13 @@
   import { useMessage } from '@/hooks/web/useMessage';
 
   const [registerTable, { reload }] = useTable({
-    title: '公告列表',
+    title: '慈善等级列表',
     api: ({ toTime, ...params }) => {
       if (Array.isArray(toTime) && toTime.length) {
         params.toTime = toTime[0];
         params.formTime = toTime[1];
       }
-      return adminApi.noticeListPage(params);
+      return adminApi.charityRoleListPage(params);
     },
 
     useSearchForm: true,
@@ -84,17 +84,17 @@
   }
   async function handleSubmit({ editType, values }) {
     if (editType) {
-      await adminApi.noticeUpdate(values);
+      await adminApi.charityRoleUpdate(values);
       success('更新成功');
     } else {
-      await adminApi.noticeCreate(values);
+      await adminApi.charityRoleCreate(values);
       success('创建成功');
     }
     reload();
     return true;
   }
   async function handleDelete(record: Recordable) {
-    await adminApi.noticeDelete(record);
+    await adminApi.charityRoleDelete(record);
     success('删除成功');
     reload();
   }

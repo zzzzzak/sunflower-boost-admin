@@ -39,13 +39,21 @@ enum Api {
   InviterProfitRuleUpdate = '/admin/inviterProfitRule/update',
   InviterProfitRuleDelete = '/admin/inviterProfitRule/delete',
 
-  // 代理等级规则
+  // 公告
   NoticeListpage = '/admin/notice/listpage',
   NoticeCreate = '/admin/notice/create',
   NoticeList = '/admin/notice/list',
   NoticeDetail = '/admin/notice/detail',
   NoticeUpdate = '/admin/notice/update',
   NoticeDelete = '/admin/notice/delete',
+
+  // 慈善等级
+  CharityRoleListpage = '/admin/charityRole/listpage',
+  CharityRoleCreate = '/admin/charityRole/create',
+  CharityRoleList = '/admin/charityRole/list',
+  CharityRoleDetail = '/admin/charityRole/detail',
+  CharityRoleUpdate = '/admin/charityRole/update',
+  CharityRoleDelete = '/admin/charityRole/delete',
 
   // 提现
   WithdrawalListpage = '/admin/detail/withdrawal/listpage',
@@ -196,6 +204,25 @@ export const noticeUpdate = (params) => {
 };
 export const noticeDelete = (params) => {
   return defHttp.post({ url: Api.NoticeDelete, params });
+};
+
+export const charityRoleListPage = (params) => {
+  return defHttp.get({ url: Api.CharityRoleListpage, params }, { isTransformResponse: false });
+};
+export const charityRoleCreate = (params) => {
+  return defHttp.post({ url: Api.CharityRoleCreate, params });
+};
+export const charityRoleList = (params?: any) => {
+  return defHttp.get({ url: Api.CharityRoleList, params });
+};
+export const charityRoleDetail = (params) => {
+  return defHttp.get({ url: Api.CharityRoleDetail, params });
+};
+export const charityRoleUpdate = (params) => {
+  return defHttp.post({ url: Api.CharityRoleUpdate, params });
+};
+export const charityRoleDelete = (params) => {
+  return defHttp.post({ url: Api.CharityRoleDelete, params });
 };
 
 export const adminUserCreate = (params) => {

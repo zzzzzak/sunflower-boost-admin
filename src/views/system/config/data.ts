@@ -94,18 +94,18 @@ export const baseSetschemas: FormSchema[] = [
     },
   },
 
-  {
-    label: '提现审批',
+  // {
+  //   label: '提现审批',
 
-    field: 'withdrawalReview',
-    component: 'Switch',
-    componentProps: {
-      checkedChildren: '开',
-      unCheckedChildren: '关',
-      checkedValue: 1,
-      unCheckedValue: 0,
-    },
-  },
+  //   field: 'withdrawalReview',
+  //   component: 'Switch',
+  //   componentProps: {
+  //     checkedChildren: '开',
+  //     unCheckedChildren: '关',
+  //     checkedValue: 1,
+  //     unCheckedValue: 0,
+  //   },
+  // },
 
   {
     label: '币安付款钱包私钥',

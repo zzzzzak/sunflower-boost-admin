@@ -1,25 +1,6 @@
 <template>
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
-    <BasicForm @register="registerForm">
-      <template #googleQrcode="{ model, field, disabled }">
-        <a-input-group compact>
-          <a-input
-            style="width: calc(100% - 100px)"
-            v-model:value="model[field]"
-            :disabled="disabled"
-            placeholder="请扫描谷歌二维码后，填写验证码"
-          />
-          <a-button type="primary" v-click-loading="handleGoogleQrCode">生成</a-button>
-        </a-input-group>
-
-        <QrCode
-          v-if="model[field]"
-          class="mt-4"
-          :value="`otpauth://totp/admin?secret=${model[field]}&issuer=sunflower-boost`"
-          :options="{ margin: 0 }"
-        />
-      </template>
-    </BasicForm>
+    <BasicForm @register="registerForm" />
   </BasicModal>
 </template>
 <script lang="ts" setup>
@@ -27,8 +8,6 @@
   import { BasicModal, useModalInner } from '@/components/Modal';
   import { BasicForm, useForm } from '@/components/Form';
   import { formSchema } from './pageConfig.data';
-  import { QrCode } from '@/components/Qrcode';
-  import { googleQrcode } from '@/api/admin/index';
 
   defineOptions({ name: 'AgentModal' });
   const props = defineProps({
@@ -63,17 +42,10 @@
       ...data.record,
     });
     if (unref(editType) === 0) {
-      resetSchema(
-        formSchema.map((item) => {
-          return {
-            required: true,
-            ...item,
-          };
-        }),
-      );
+      resetSchema(formSchema);
     } else if (unref(editType) === 1) {
       rowId.value = data.record.id;
-      resetSchema(formSchema);
+      // resetSchema(audioSchema);
     }
   });
 
@@ -89,7 +61,8 @@
         editType: unref(editType),
         values: { ...values },
       };
-      if (unref(editType) === 1) {
+      if (unref(editType) === 0) {
+      } else if (unref(editType) === 1) {
         params.values.id = rowId.value;
       }
 
@@ -100,11 +73,5 @@
     } finally {
       setModalProps({ confirmLoading: false });
     }
-  }
-  async function handleGoogleQrCode() {
-    const res = await googleQrcode({
-      accountName: 'admin',
-    });
-    setFieldsValue({ otpSecret: res.secret });
   }
 </script>

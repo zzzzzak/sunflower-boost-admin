@@ -19,11 +19,25 @@ export const formSchema: FormSchema[] = [
     field: 'password',
     label: '密码',
     component: 'InputPassword',
+    componentProps: {
+      placeholder: '密码留空为不修改',
+    },
   },
   {
     field: 'confirmPassword',
     label: '确认密码',
     component: 'InputPassword',
+    componentProps: {
+      placeholder: '密码留空为不修改',
+    },
+  },
+  {
+    field: 'ipWhiteList',
+    label: '访问IP白名单',
+    component: 'Input',
+    componentProps: {
+      placeholder: '“*”或者留空不限制，多个请用英文,分割',
+    },
   },
   {
     field: 'otpSecret',

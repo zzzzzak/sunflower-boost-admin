@@ -4,6 +4,7 @@ const commissionTypeOptions = [
   { label: '推荐佣金', value: 'INDIRECT' },
   { label: 'M层佣金', value: 'GLOBAL' },
   { label: '静态佣金', value: 'StaticPool' },
+  { label: '提现分润', value: 'Withdrawal' },
 ];
 
 // 通过上面实体配置生成以下页面配置：
@@ -18,6 +19,10 @@ export const columns: BasicColumn[] = [
     customRender({ record }) {
       return record.orderId || record.orderIds;
     },
+  },
+  {
+    title: '提现订单ID',
+    dataIndex: 'withdrawalId',
   },
   {
     title: '大区资金冻结',

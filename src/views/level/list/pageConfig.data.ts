@@ -37,6 +37,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'globalProfitRate',
   },
   {
+    title: '提现分润比例',
+    dataIndex: 'withdrawalProfitRate',
+  },
+  {
     title: '参与静态分润',
     dataIndex: 'isStaticProfit',
     valueEnum: [
@@ -94,6 +98,17 @@ export const formSchema: FormSchema[] = [
   {
     field: 'globalProfitRate',
     label: '全局分润比例',
+    component: 'InputNumber',
+    componentProps: {
+      max: 1,
+      min: 0,
+      step: 0.01,
+    },
+    required: true,
+  },
+  {
+    field: 'withdrawalProfitRate',
+    label: '提现分润比例',
     component: 'InputNumber',
     componentProps: {
       max: 1,

@@ -1,5 +1,5 @@
-import { ErrorMessageMode } from '#/axios';
 import { defHttp } from '@/utils/http/axios';
+import { ErrorMessageMode } from 'types/axios';
 
 enum Api {
   Logout = '/admin/admin-user/logout',
@@ -46,6 +46,12 @@ enum Api {
   NoticeDetail = '/admin/notice/detail',
   NoticeUpdate = '/admin/notice/update',
   NoticeDelete = '/admin/notice/delete',
+
+  // API日志
+  ApiLogListpage = '/admin/apiLog/listpage',
+  ApiLogList = '/admin/apiLog/list',
+  ApiLogDetail = '/admin/apiLog/detail',
+  ApiLogDelete = '/admin/apiLog/delete',
 
   // 慈善等级
   CharityRoleListpage = '/admin/charityRole/listpage',
@@ -107,7 +113,7 @@ export function doLogout() {
 }
 
 export function getUserInfo() {
-  return defHttp.post({ url: Api.GetUserInfo }).then((res) => {
+  return defHttp.get({ url: Api.GetUserInfo }).then((res) => {
     // if (res.roles && res.roles.length > 0) {
     //   res.roles = [
     //     {
@@ -204,6 +210,19 @@ export const noticeUpdate = (params) => {
 };
 export const noticeDelete = (params) => {
   return defHttp.post({ url: Api.NoticeDelete, params });
+};
+
+export const apiLogListPage = (params) => {
+  return defHttp.get({ url: Api.ApiLogListpage, params }, { isTransformResponse: false });
+};
+export const apiLogList = (params?: any) => {
+  return defHttp.get({ url: Api.ApiLogList, params });
+};
+export const apiLogDetail = (params) => {
+  return defHttp.get({ url: Api.ApiLogDetail, params });
+};
+export const apiLogDelete = (params) => {
+  return defHttp.post({ url: Api.ApiLogDelete, params });
 };
 
 export const charityRoleListPage = (params) => {
@@ -311,5 +330,5 @@ export const systemConfigUpdate = (data) => {
 };
 
 export const getMenuList = () => {
-  return defHttp.post({ url: Api.GetMenuList });
+  return defHttp.get({ url: Api.GetMenuList });
 };

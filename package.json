@@ -18,7 +18,7 @@
   "type": "module",
   "scripts": {
     "bootstrap": "pnpm install",
-    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build  --mode producticon",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build  --mode production",
     "build:analyze": "cross-env NODE_OPTIONS=--max-old-space-size=8192 pnpm vite build --mode analyze",
     "build:docker": "vite build --mode docker",
     "build:no-cache": "pnpm store prune && npm run build",

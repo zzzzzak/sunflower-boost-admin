@@ -73,7 +73,7 @@ export const formSchema: FormSchema[] = [
     component: 'Select',
     required: true,
     componentProps: {
-      options: auditOptions,
+      options: auditOptions.filter((item) => item.value !== 'RETURN'),
     },
   },
   {

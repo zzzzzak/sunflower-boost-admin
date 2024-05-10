@@ -1,4 +1,3 @@
-import { uploadApi } from '@/api/sys/upload';
 import { FormSchema } from '@/components/Form';
 import { useUserStore } from '@/store/modules/user';
 
@@ -104,6 +103,16 @@ export const baseSetschemas: FormSchema[] = [
       unCheckedChildren: '关',
       checkedValue: 1,
       unCheckedValue: 0,
+    },
+  },
+
+  {
+    label: '最低提现审批金额',
+    field: 'withdrawalReviewAmount',
+    component: 'InputNumber',
+    componentProps: {
+      step: 0.001,
+      min: 0,
     },
   },
 

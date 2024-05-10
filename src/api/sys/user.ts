@@ -34,7 +34,7 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
  * @description: getUserInfo
  */
 export function getUserInfo() {
-  return defHttp.post<GetUserInfoModel>({ url: Api.GetUserInfo }).then((res) => {
+  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }).then((res) => {
     if (res.roles && res.roles.length > 0) {
       res.roles = [
         {

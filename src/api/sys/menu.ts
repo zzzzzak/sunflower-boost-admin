@@ -12,5 +12,5 @@ enum Api {
  */
 
 export const getMenuList = () => {
-  return defHttp.post<getMenuListResultModel>({ url: Api.GetMenuList });
+  return defHttp.get<getMenuListResultModel>({ url: Api.GetMenuList });
 };

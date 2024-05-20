@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增</a-button>
+        <a-button type="primary" v-auth="RoleEnum.SUPER" @click="handleCreate">新增</a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -11,12 +11,14 @@
               {
                 icon: 'clarity:note-edit-line',
                 label: '编辑公告',
+                auth: RoleEnum.SUPER,
                 onClick: handleEdit.bind(null, record),
               },
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
                 label: '删除此数据',
+                auth: RoleEnum.SUPER,
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',
@@ -38,6 +40,7 @@
   import EditFormModal from './EditFormModal.vue';
   import { useModal } from '@/components/Modal';
   import { useMessage } from '@/hooks/web/useMessage';
+  import { RoleEnum } from '@/enums/roleEnum';
 
   const [registerTable, { reload }] = useTable({
     title: '公告列表',

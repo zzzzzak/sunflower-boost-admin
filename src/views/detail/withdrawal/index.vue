@@ -16,32 +16,36 @@
               {
                 icon: 'clarity:note-edit-line',
                 label: '审批',
+                auth: RoleEnum.SUPER,
                 onClick: handleEdit.bind(null, record),
                 ifShow: () => record.audit === 'PENDING',
               },
               {
                 icon: 'clarity:refresh-line',
                 label: '重新打款',
+                auth: RoleEnum.SUPER,
                 onClick: handleReTransfer.bind(null, record.id),
                 ifShow: () => record.status === 'FAILED',
               },
               {
                 icon: 'clarity:backup-restore-line',
                 label: '退回订单',
+                auth: RoleEnum.SUPER,
                 onClick: handleRefaush.bind(null, record.id),
                 ifShow: () => record.audit === 'PENDING' || record.status === 'FAILED',
               },
-              {
-                icon: 'ant-design:delete-outlined',
-                color: 'error',
-                label: '删除此数据',
-                popConfirm: {
-                  title: '是否确认删除',
-                  placement: 'left',
-                  confirm: handleDelete.bind(null, record),
-                },
-                ifShow: () => record.status === 'PENDING',
-              },
+              // {
+              //   icon: 'ant-design:delete-outlined',
+              //   color: 'error',
+              //   label: '删除此数据',
+              //   auth: RoleEnum.SUPER,
+              //   popConfirm: {
+              //     title: '是否确认删除',
+              //     placement: 'left',
+              //     confirm: handleDelete.bind(null, record),
+              //   },
+              //   ifShow: () => record.status === 'PENDING',
+              // },
             ]"
           />
         </template>
@@ -62,6 +66,7 @@
   import { useMessage } from '@/hooks/web/useMessage';
   import MemberList from '@/components/BusinessComponents/MemberList/index.vue';
   import { ref } from 'vue';
+  import { RoleEnum } from '@/enums/roleEnum';
 
   const [registerTable, { reload }] = useTable({
     title: '提现明细列表',

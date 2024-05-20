@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增</a-button>
+        <a-button type="primary" @click="handleCreate" v-auth="RoleEnum.SUPER">新增</a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -11,12 +11,14 @@
               {
                 icon: 'clarity:note-edit-line',
                 label: '编辑管理员账号资料',
+                auth: RoleEnum.SUPER,
                 onClick: handleEdit.bind(null, record),
               },
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
                 label: '删除此数据',
+                auth: RoleEnum.SUPER,
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',
@@ -36,8 +38,9 @@
   import * as adminApi from '@/api/admin/index';
   import { columns, searchFormSchema } from './pageConfig.data';
   import EditFormModal from './EditFormModal.vue';
-  import { BasicModal, useModal } from '@/components/Modal';
+  import { useModal } from '@/components/Modal';
   import { useMessage } from '@/hooks/web/useMessage';
+  import { RoleEnum } from '@/enums/roleEnum';
 
   const [registerTable, { reload }] = useTable({
     title: '管理员账号列表',

@@ -2,6 +2,7 @@ import { defHttp } from '@/utils/http/axios';
 import { LoginParams, LoginResultModel, GetUserInfoModel } from './model/userModel';
 
 import { ErrorMessageMode } from '#/axios';
+import { useUserStore } from '@/store/modules/user';
 
 enum Api {
   Login = '/admin/admin-user/login',
@@ -35,21 +36,16 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
  */
 export function getUserInfo() {
   return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }).then((res) => {
-    if (res.roles && res.roles.length > 0) {
-      res.roles = [
-        {
-          roleName: 'Super Admin',
-          value: 'super',
-        },
-      ];
-    }
     return res;
   });
 }
 
 export function getPermCode() {
   // return defHttp.post<string[]>({ url: Api.GetPermCode });
-  return ['*'];
+  // return ['super'];
+  const { userInfo } = useUserStore();
+  return userInfo.role ? [userInfo.role] : [];
+  return [];
 }
 
 export function doLogout() {

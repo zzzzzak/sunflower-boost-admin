@@ -19,7 +19,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { CountTo } from '@/components/CountTo';
   import { Tag, Card } from 'ant-design-vue';
   import { onMounted, ref } from 'vue';
   import { getAdminAnalysis } from '@/api/admin/index';

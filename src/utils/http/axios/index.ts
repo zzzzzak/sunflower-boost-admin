@@ -232,7 +232,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // authentication schemes，e.g: Bearer
         authenticationScheme: 'Bearer',
         // authenticationScheme: '',
-        timeout: 10 * 1000,
+        timeout: 50 * 1000,
         // 基础接口地址
         // baseURL: globSetting.apiUrl,
 

@@ -18,7 +18,7 @@
         </div>
       </Col> -->
     </Row>
-    <a-button type="primary" @click="handleSubmit"> 更新基本信息 </a-button>
+    <a-button type="primary" @click="handleSubmit" v-auth="RoleEnum.SUPER"> 更新基本信息 </a-button>
   </CollapseContainer>
 </template>
 <script lang="ts" setup>
@@ -33,6 +33,7 @@
   import { systemConfigDetail, systemConfigUpdate } from '@/api/admin/index';
   import { baseSetschemas } from './data';
   import { useUserStore } from '@/store/modules/user';
+  import { RoleEnum } from '@/enums/roleEnum';
 
   const { createMessage } = useMessage();
   const userStore = useUserStore();

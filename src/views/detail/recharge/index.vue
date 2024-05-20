@@ -16,6 +16,7 @@
               {
                 icon: 'clarity:employee-group-solid',
                 label: '重新分润',
+                auth: RoleEnum.SUPER,
                 onClick: handleReShare.bind(null, record),
               },
               // {
@@ -24,17 +25,18 @@
               //   onClick: handleEdit.bind(null, record),
               //   ifShow: () => record.status === 'SUCCESS',
               // },
-              {
-                icon: 'ant-design:delete-outlined',
-                color: 'error',
-                label: '删除此数据',
-                popConfirm: {
-                  title: '是否确认删除',
-                  placement: 'left',
-                  confirm: handleDelete.bind(null, record),
-                },
-                ifShow: () => record.binancePaymentStatus !== 'SUCCESS',
-              },
+              // {
+              //   icon: 'ant-design:delete-outlined',
+              //   color: 'error',
+              //   label: '删除此数据',
+              //   auth: RoleEnum.SUPER,
+              //   popConfirm: {
+              //     title: '是否确认删除',
+              //     placement: 'left',
+              //     confirm: handleDelete.bind(null, record),
+              //   },
+              //   ifShow: () => record.binancePaymentStatus !== 'SUCCESS',
+              // },
             ]"
           />
         </template>
@@ -54,6 +56,7 @@
   import EditFormModal from './EditFormModal.vue';
   import { BasicModal, useModal } from '@/components/Modal';
   import { useMessage } from '@/hooks/web/useMessage';
+  import { RoleEnum } from '@/enums/roleEnum';
 
   const [registerTable, { reload }] = useTable({
     title: '充值明细列表',

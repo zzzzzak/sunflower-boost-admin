@@ -1,3 +1,4 @@
+import { levelList } from '@/api/admin';
 import { BasicColumn, FormSchema } from '@/components/Table';
 
 const binancePaymentStatusOptions = [
@@ -56,11 +57,15 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '订单前等级',
-    dataIndex: 'beforeLevelId',
+    dataIndex: 'beforeLevel',
+    customRender: ({ record }) => {
+      return record.beforeLevel?.name;
+    },
   },
   {
     title: '订单后等级',
-    dataIndex: 'afterLevelId',
+    dataIndex: 'afterLevel',
+    customRender: ({ record }) => record.afterLevel?.name,
   },
   {
     title: '币安支付状态',
@@ -114,5 +119,25 @@ export const searchFormSchema: FormSchema[] = [
     field: 'createdAt',
     label: '订单创建时间',
     component: 'RangePicker',
+  },
+  {
+    field: 'beforeLevelId',
+    label: '升级前等级',
+    component: 'ApiSelect',
+    componentProps: {
+      api: levelList,
+      labelField: 'name',
+      valueField: 'id',
+    },
+  },
+  {
+    field: 'afterLevelId',
+    label: '升级后等级',
+    component: 'ApiSelect',
+    componentProps: {
+      api: levelList,
+      labelField: 'name',
+      valueField: 'id',
+    },
   },
 ];

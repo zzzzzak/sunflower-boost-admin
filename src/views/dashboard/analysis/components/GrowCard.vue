@@ -10,7 +10,7 @@
 
           <div class="py-4 px-4 flex justify-between items-center">
             <!-- <CountTo :startVal="1" :endVal="Number(item.value)" class="text-2xl" /> -->
-            <div class="text-2xl">{{ item.value }}</div>
+            <div class="text-2xl">{{ item.value || 0 }}</div>
             <!-- <Icon :icon="item.icon" :size="40" /> -->
           </div>
         </Card>
@@ -53,84 +53,88 @@
     const res = await getAdminAnalysis(params);
     growCardList.value = [
       {
-        title: '注册用户',
+        title: '今日注册用户',
         icon: 'visit-count|svg',
-        value: res.userCount,
-        total: 120000,
+        value: res.todayUserCount,
         color: 'green',
         action: '位',
       },
-      // {
-      //   title: '今日充值',
-      //   icon: 'total-sales|svg',
-      //   value: res.rechangeTodayMoney,
-      //   total: res.rechangeTodayMoney,
-      //   color: 'blue',
-      //   action: 'DOGE',
-      // },
-      // {
-      //   title: '今日提现',
-      //   icon: 'download-count|svg',
-      //   value: res.withdrawalTodayMoney,
-      //   total: res.withdrawalTodayMoney,
-      //   color: 'orange',
-      //   action: 'DOGE',
-      // },
+
+      {
+        title: '今日充值订单数',
+        icon: 'total-sales|svg',
+        value: res.todayOrderCount,
+        color: 'blue',
+        action: '笔',
+      },
+      {
+        title: '今日充值金额',
+        icon: 'total-sales|svg',
+        value: Number(res.todayOrderTotalMoney || 0).toFixed(2),
+        color: 'blue',
+        action: 'DOGE',
+      },
+      {
+        title: '今日提现订单数',
+        icon: 'total-sales|svg',
+        value: res.todayWithdrawalCount,
+        color: 'blue',
+        action: '笔',
+      },
+      {
+        title: '今日提现金额',
+        icon: 'total-sales|svg',
+        value: Number(res.todayWithdrawalTotalMoney || 0).toFixed(2),
+        color: 'blue',
+        action: 'DOGE',
+      },
+
+      {
+        title: '注册用户',
+        icon: 'visit-count|svg',
+        value: res.userCount,
+        color: 'green',
+        action: '位',
+      },
       {
         title: '总充值',
         icon: 'total-sales|svg',
-        value: res.rechangeTotalMoney,
-        total: res.rechangeTotalMoney,
+        value: Number(res.rechangeTotalMoney || 0).toFixed(2),
         color: 'blue',
         action: 'DOGE',
       },
       {
         title: '总提现',
         icon: 'download-count|svg',
-        value: res.withdrawalTotalMoney,
-        total: res.withdrawalTotalMoney,
+        value: Number(res.withdrawalTotalMoney || 0).toFixed(2),
         color: 'orange',
         action: 'DOGE',
       },
       {
         title: '总实际提现',
         icon: 'download-count|svg',
-        value: res.realAmount,
-        total: res.realAmount,
+        value: Number(res.realAmount || 0).toFixed(2),
         color: 'orange',
         action: 'DOGE',
       },
       {
         title: '总慈善',
         icon: 'download-count|svg',
-        value: res.charityAmount,
-        total: res.charityAmount,
+        value: Number(res.charityAmount || 0).toFixed(2),
         color: 'orange',
         action: 'DOGE',
       },
-
-      // {
-      //   title: '总返水',
-      //   icon: 'download-count|svg',
-      //   value: res.fanshuiTotalMoney,
-      //   total: res.fanshuiTotalMoney,
-      //   color: 'orange',
-      //   action: 'DOGE',
-      // },
-
       {
         title: '总分润',
         icon: 'download-count|svg',
-        value: res.commissionTotalMoney,
-        total: res.commissionTotalMoney,
+        value: Number(res.commissionTotalMoney || 0).toFixed(2),
         color: 'orange',
         action: 'DOGE',
       },
       {
         title: '总冻结',
         icon: 'download-count|svg',
-        value: res.frozenAmount,
-        total: res.frozenAmount,
+        value: Number(res.frozenAmount || 0).toFixed(2),
         color: 'orange',
         action: 'DOGE',
       },

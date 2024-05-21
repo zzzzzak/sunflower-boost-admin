@@ -88,7 +88,13 @@
         color: 'blue',
         action: 'DOGE',
       },
-
+      {
+        title: '今日实际提现金额',
+        icon: 'total-sales|svg',
+        value: Number(res.todayWithdrawalTotalRealMoney || 0).toFixed(2),
+        color: 'blue',
+        action: 'DOGE',
+      },
       {
         title: '注册用户',
         icon: 'visit-count|svg',
